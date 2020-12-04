@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.cRetrieveContainer{
+	margin: 0 auto;
+	width: 1100px;
+	text-align: center;
+}
+
+.cReplyContainer{
+	margin: 0 auto;
+	width: 650px;
+	text-align: left;
+}

@@ -1,0 +1,89 @@
+create user acomm IDENTIFIED by acomm;
+alter user acomm account unlock;
+grant connect, resource to acomm;
+
+drop table course;
+create table course
+(
+	cName varchar(50) not null,
+	cCode number(2) primary key,
+	cPrice number(10) not null,
+	cStartDate date not null,
+	cEndDate date not null,
+	cTotalDate number(4) not null,
+	cStudNum number(4) not null,
+	cContent varchar2(100) not null,
+	cInstructor varchar2(10) not null,
+	cImage varchar2(20) not null
+);
+
+drop table member;
+create table member
+(
+  userID varchar2(20) primary key,
+  userPW varchar2(20) not null,
+  userName varchar2(10) not null,
+  phoneNum varchar2(11) not null,
+  email1 varchar2(20) not null,
+  email2 varchar2(20) not null,
+  cCode number(2) constraint member_userid_fk references course(cCode),
+  age number(2) not null,
+  cScore number(1)
+);
+
+drop table product;
+create table product
+(
+	pCode number(4) primary key,
+	isSold char(2) default 'N',
+	userID varchar2(20) constraint product_userid_fk references member(userid),
+	pPrice number(10) not null,
+	pName varchar(20) not null,
+	pContent varchar(100) not null,
+	pImage varchar(20) not null
+);
+create sequence product_seq;
+
+drop table orderC;
+create table orderC
+(
+	orderNum number(6) primary key,
+	cName varchar(20) not null,
+	cCode number(2) constraint cart_cCode_fk references course(cCode),
+	cPrice number(10) not null,
+	cImage varchar2(20) not null,
+	cStartDate  date not null,
+	cEndDate date not null,
+	cTotalDate number(4) not null,
+	userid varchar2(20) constraint order_userid_fk references member(userid),
+	userName varchar2(10) not null,
+	phoneNum varchar2(11) not null,
+	email1 varchar2(20) not null,
+	email2 varchar2(20) not null,
+	payMethod varchar2(10) not null,
+	oDate date default sysdate
+);
+create sequence orderC_seq;
+
+drop table freeBoard;
+create table freeBoard
+(
+	num NUMBER(4) primary key,
+	title VARCHAR2(200) not null,
+	userid varchar2(20) constraint freeBoard_userid_fk references member(userid),
+	content VARCHAR2(4000) not null,
+	writeday DATE default SYSDATE,
+	readCnt NUMBER(4) default 0
+);
+create sequence freeBoard_seq;
+
+alter table course modify(cContent varchar2(200));
+alter table course modify(cName varchar2(70));
+
+insert into course values('���� ���� �̷� ����', 0, 0, sysdate, sysdate, 0, 0, '���� ������', '�����', '�̹���');
+insert into course values('�ڹ�(JAVA) ������, �ȵ���̵� �� ������ �缺����', 1, 5000000, '20/01/02', '20/04/02', 90, 30, '�ڹٰ������� �߿� ��ų�� ������ �����ӿ�ũ ������ �ȵ���̵� ��Ʋ�� �������� �Ͽ� ���� �� ������ ��� ������ ������ �缺�� ��ǥ�� �մϴ�.', '����ȣ', 'course1.jpg');
+insert into course values('�ӽŷ����� Ȱ���� ������ �м� ����', 2, 5000000, '20/02/02', '20/06/02', 120, 30, '�ӽŷ��� �˰��� ����� Ȱ���Ͽ� ����/������ ��뷮 �����͸� ����, Ž��, �м��ϰ� �ð�ȭ�� ������ ������ �м� ������ �缺�� ��ǥ�� �մϴ�.', '�Ѽ���', 'course2.jpg');
+insert into course values('React����� �ڹ�(JAVA)������ �缺����', 3, 5800000, '20/07/14', '20/12/31', 90, 6, '�ڹٰ������� �߿� ��ų�� ������ �����ӿ�ũ ������ ������Ʈ���� �������� ������ ü�������� ���������ν� ����SW�����Ͼ� �缺�� ��ǥ�� �մϴ�.', '��ö��', 'course3.png');
+insert into course values('�ڹ�(JAVA)����� �鿣��(Back-end)������ �缺����', 4, 5800000, '20/10/02', '20/11/02', 30, 6, '������Ʈ���� �����ӿ�ũ�� �ڹ� ����� �����������ӿ�ũ�� Ȱ���� �������� �缺�� ��ǥ�� �ϴ� �����Դϴ�.', '������', 'course4.png');
+insert into course values('�ڹ�(JAVA)������ �缺 �� ������ �м�����', 5, 6000000, '21/07/14', '21/12/22', 160, 6, '�����α׷��� �н��� ������ �÷��� Ȱ���� ���� Hadoop ���, Python�� Ȱ���� ���м� ����� �н��Ѵ�.', '�����', 'course5.jpg');
+insert into course values('OpenSource ��� ������ �м� ������ �缺����', 6, 5700000, '21/05/07', '21/08/15', 120, 6, '�ӽŷ���(Machine Learning)�� Ȱ���� ������ �м� ����', '�ڼ�ȭ', 'course6.png');

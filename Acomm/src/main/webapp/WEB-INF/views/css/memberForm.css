@@ -1,0 +1,15 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+.containerMember{
+	margin: 0 auto;
+	width: 900px;
+	
+}
+.innerContainer{
+	margin: 100px auto;
+	width: 800px;
+	height: 700px;
+}

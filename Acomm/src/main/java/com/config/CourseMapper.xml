@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CourseMapper">
+
+	<select id="selectCourse" resultType="CourseDTO"
+		parameterType="List">
+		select cName, cCode, cPrice, cStartDate, cEndDate, cTotalDate,
+		cStudNum, cContent, cInstructor, cImage
+		from course
+		where cCode in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="selectScore" resultType="int" parameterType="int">
+		select
+		cScore
+		from member
+		where cCode = #{cCode}
+	</select>
+
+	<select id="selectAge" parameterType="int" resultType="int">
+		select age
+		from member
+		where cCode = #{cCode}
+	</select>
+
+	<select id="currentStudNum" parameterType="int" resultType="int">
+		select count(*)
+		from member
+		where cCode = #{cCode}
+	</select>
+	
+	<insert id="insertOrderC" parameterType="OrderCDTO">
+		insert into orderc
+		(orderNum, cName, cCode, cPrice, cImage ,cStartDate ,cEndDate, cTotalDate, userId ,userName , phoneNum , email1 , email2 ,payMethod , oDate)
+	 	values (orderC_seq.nextval, #{cName}, #{cCode},
+	 	#{cPrice}, #{cImage}, #{cStartDate}, #{cEndDate}, #{cTotalDate}, #{userId}, #{userName}, #{phoneNum}, #{email1}, #{email2}, #{payMethod}, sysdate)
+	</insert>
+</mapper>

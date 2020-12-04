@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.cBoardContainer{
+	margin: 0 auto;
+	width: 1100px;
+	text-align: center;
+}
+
+.cBoardInnerContainer{
+	margin: 0 auto;
+	width: 400px;
+}
+
+.courseInfo{
+	margin: 0 auto;
+}
+
+.centralize{
+	margin: 0 auto;
+	width: 1000px;
+	text-align: center;
+}

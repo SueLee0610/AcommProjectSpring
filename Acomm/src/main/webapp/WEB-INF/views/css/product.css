@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.pContainer{
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.productContainer{
+	width: 720px;
+	margin: 0 auto;
+}

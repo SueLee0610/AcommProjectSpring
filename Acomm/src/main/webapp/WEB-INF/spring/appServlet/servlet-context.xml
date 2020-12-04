@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com."></context:component-scan>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/" />
+	<mvc:resources mapping="/fonts/**" location="/WEB-INF/views/fonts/" />
+	<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/" />
+	<mvc:resources mapping="/img/**" location="/WEB-INF/views/img/" />
+	<mvc:resources mapping="/vendor/**" location="/WEB-INF/views/vendor/" />
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	<mvc:view-controller path="/" view-name="main"/> <!-- /요청인 경우 뷰페이지는 main.jsp -->
+	<mvc:view-controller path="/memberForm" view-name="memberForm"/>
+	
+	<context:property-placeholder
+		location="classpath:com/config/jdbc.properties" />
+	<beans:bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<beans:property name="driverClassName" value="${driver}"></beans:property>
+		<beans:property name="url" value="${url}"></beans:property>
+		<beans:property name="username" value="${username}"></beans:property>
+		<beans:property name="password" value="${password}"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="mapperLocations">
+			<beans:list>
+				<beans:value>classpath:com/config/CourseMapper.xml</beans:value>
+				<beans:value>classpath:com/config/FreeBoardMapper.xml</beans:value>
+				<beans:value>classpath:com/config/MemberMapper.xml</beans:value>
+				<beans:value>classpath:com/config/ProductMapper.xml</beans:value>
+				<beans:value>classpath:com/config/ReplyMapper.xml</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="typeAliases">
+			<!-- 실제 alias는 각 클래스에서 어노테이션 지정 -->
+			<beans:list>
+				<beans:value>com.dto.CourseDTO</beans:value> 
+				<beans:value>com.dto.FreeBoardDTO</beans:value>
+				<beans:value>com.dto.MemberDTO</beans:value>
+				<beans:value>com.dto.OrderCDTO</beans:value>
+				<beans:value>com.dto.PageDTO</beans:value>
+				<beans:value>com.dto.ProductDTO</beans:value>
+				<beans:value>com.dto.ReplyDTO</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg name="sqlSessionFactory" ref="sessionFactory" />
+	</beans:bean>
+
+</beans:beans>

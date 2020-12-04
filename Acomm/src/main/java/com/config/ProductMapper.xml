@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+
+	<select id="selectProduct" resultType="ProductDTO">
+		select pCode, isSold, userid, pPrice, pName, pContent, pImage
+		from product
+		order by isSold
+	</select>
+	
+	<select id="selectProductRetrieve" resultType="ProductDTO" parameterType="int">
+		select * from product
+		where pCode = #{pCode}
+	</select>
+	
+	<update id="isSoldUpdate" parameterType="int">
+		update product set isSold='y'
+		where pCode=#{pCode}
+	</update>
+	
+	<insert id="addProduct" parameterType="ProductDTO">
+		insert into product (pCode, isSold, userid, pPrice, pName, pContent, pImage)
+		values (PRODUCT_SEQ.nextval, 'n', #{userid}, #{pPrice}, #{pName}, #{pContent}, #{pImage})
+	</insert>
+	
+	<delete id="deleteProduct" parameterType="int">
+		delete from product
+		where pCode=#{pCode}
+	</delete>
+	
+	<select id="search" parameterType="hashmap" resultType="ProductDTO">
+		select pCode, isSold, userid, pPrice, pName, pContent, pImage
+		from product
+ 		<where>
+ 				<if test="searchName == 'pName'">
+				upper(pName) like upper('%'||#{searchTerm}||'%')
+				</if>
+				<if test="searchName == 'userID'">
+					upper(userid) like upper('%'||#{searchTerm}||'%')
+				</if>
+				<if test="searchName == 'pContent'">
+					upper(pContent) like upper('%'||#{searchTerm}||'%')
+				</if>
+			
+		</where>
+			order by isSold
+	</select>
+	
+	<select id="selectMyProduct" parameterType="string" resultType="ProductDTO">
+		select pCode, isSold, pPrice, pName
+		from product
+		where userid=#{userid}
+	</select>
+	
+	<update id="productUpdate" parameterType="ProductDTO">
+		update product
+		set pPrice=#{pPrice}, pName=#{pName}, pContent=#{pContent}
+		where pCode=#{pCode}
+	</update>
+
+</mapper>

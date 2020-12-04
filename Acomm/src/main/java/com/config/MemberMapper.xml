@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	
+	<insert id="memberAdd">
+		insert into member (userID, userPW, userName, phoneNum, email1, email2, cCode, age, cScore)
+		values(#{userID}, #{userPW}, #{userName}, #{phoneNum}, #{email1}, #{email2}, #{cCode}, #{age}, #{cScore})
+	</insert>
+	
+	<select id="idCheck" resultType="int">
+		select count(*) from member
+		where userID = #{userID}
+	</select>
+	
+	<select id="login" parameterType="HashMap" resultType="MemberDTO">
+		select * from member
+		where userID = #{userID} and userPW = #{userPW}
+	</select>
+	
+	<select id="myPage" parameterType="string" resultType="MemberDTO">
+		select userID, userPW, userName, phoneNum, email1, email2, cCode, age, cScore
+		from member
+		where userID = #{userID}
+	</select>
+	
+	<select id="myPageCName" parameterType="int" resultType="string">
+		select cName
+		from course
+		where cCode = #{cCode}
+	</select>
+	
+	<update id="memberUpdate" parameterType="MemberDTO">
+		update member set userPW=#{userPW}, userName = #{userName}, phoneNum = #{phoneNum}, email1 = #{email1}, email2 =  #{email2}, cCode=#{cCode}, age= #{age}, cScore=#{cScore}
+		where userID = #{userID}
+	</update>
+
+	<select id="idSearch" resultType="string" parameterType="MemberDTO">
+		select userID
+		from member
+		where userName = #{userName} and phoneNum = #{phoneNum}
+	</select>
+	
+	<update id="updateCcode" parameterType="OrderCDTO">
+		update member
+		set cCode = #{cCode}
+		where userid = #{userId}
+	</update>
+</mapper>

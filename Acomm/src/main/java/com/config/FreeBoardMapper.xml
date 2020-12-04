@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FreeBoardMapper">
+	
+	<select parameterType="hashmap" resultType="int" id="totalCount">
+		select count(*)
+		from freeBoard
+		<where>
+			<if test="searchName == 'userid'">
+				(userid) like '%' || #{searchValue} || '%'
+			</if>
+			<if test="searchName == 'title'">
+				(title) like '%' || #{searchValue} || '%'
+			</if>
+			<if test="searchName == 'content'">
+				(content) like '%' || #{searchValue} || '%'
+			</if>			
+		</where>		
+	</select>
+
+	<!-- 게시글 검색기능 -->
+	<select id="search" resultType="FreeBoardDTO" parameterType="hashmap">
+		select num, title, userid, content,
+		to_char(writeday,'yyyy/MM/dd')
+		writeday,readCnt
+		from freeBoard
+
+		<where>
+			<if test="searchName == 'userid'">
+				(userid) like '%' || #{searchValue} || '%'
+			</if>
+			<if test="searchName == 'title'">
+				(title) like '%' || #{searchValue} || '%'
+			</if>
+			<if test="searchName == 'content'">
+				(content) like '%' || #{searchValue} || '%'
+			</if>			
+		</where>
+
+		<!-- 오름차순 정렬 -->
+		order by num asc
+	</select>	
+	
+	<!-- 게시글 모든 리스트 보여주기 -->
+	<select id="selectFreeBoard" resultType="FreeBoardDTO">
+		select num, title, userid, content,
+		to_char(writeday,'yyyy/MM/dd')
+		writeday,readCnt
+		from freeBoard
+
+		<!-- 오름차순 정렬 -->
+		order by num asc
+	</select>
+	
+	<!-- 게시글 작성,생성 -->
+	<insert id="insert" parameterType="FreeBoardDTO">
+		insert into freeBoard(num, title, userid, content)
+		values(freeBoard_seq.nextval, #{title}, #{userid}, #{content})
+	</insert>
+	
+	<!-- 게시글 검색 -->
+	<select id="retrieve" resultType="FreeBoardDTO" parameterType="int">
+		select num, title, userid, content,
+		to_char(writeday,'yyyy/MM/dd')
+		writeday,readCnt
+		from freeBoard
+		where num = #{num}
+	</select>
+
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from freeBoard
+		where num = #{num}
+	</delete>
+	
+	<select id="selectByNum" parameterType="int" resultType="FreeBoardDTO">
+		select num,title,userid,content,
+		to_char(writeday,'yyyy/MM/dd' )
+		writeday,readCnt
+		from freeBoard
+		where num =#{num}
+	</select>
+	
+	<!-- 조회수 증가 (게시글 확인 시 카운트 증가 +1) -->
+	<update id="readCnt" parameterType="int">
+		update freeBoard set
+		readCnt =
+		readCnt + 1
+		where num =#{num}
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<!-- title, content 수정-->
+	<update id="update" parameterType="FreeBoardDTO">
+		update freeBoard set
+		title =#{title},
+		content =#{content}
+		where num =#{num}
+	</update>
+	
+</mapper>

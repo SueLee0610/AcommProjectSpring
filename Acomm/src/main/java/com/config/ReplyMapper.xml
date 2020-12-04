@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReplyMapper">
+
+	<insert id="insertReply" useGeneratedKeys="true" keyProperty="reNO">
+		<selectKey resultType="int" keyProperty="reNO" order="BEFORE">
+			select nvl(max(reNO), 0)+1 from reply
+		</selectKey>
+		insert into reply (cCode, reNO, reWriter, reContent, reDate,
+		reDeleteFlag, reOrder, reParent, reDepth)
+		values (#{cCode}, #{reNO},
+		#{reWriter}, #{reContent}, to_date(sysdate,'yyyy.mm.dd hh24:mi'), 'Y',
+		#{reOrder}, #{reParent}, #{reDepth})
+	</insert>
+
+	<insert id="insertReplyWOParent" useGeneratedKeys="true" keyProperty="reNO">
+		<selectKey resultType="int" keyProperty="reNO" order="BEFORE">
+			select nvl(max(reNO), 0)+1 from reply
+		</selectKey>
+		insert into reply (cCode, reNO, reWriter, reContent, reDate,
+		reDeleteFlag, reOrder, reParent, reDepth)
+		values (#{cCode}, #{reNO},
+		#{reWriter}, #{reContent}, to_date(sysdate,'yyyy.mm.dd hh24:mi'), 'Y',
+		#{reOrder}, #{reParent}, 0)
+	</insert>
+
+	<select id="selectReplyList" parameterType="int" resultType="ReplyDTO">
+		select *
+		from reply
+		where cCode = #{cCode}
+		order by reParent
+		asc, reDepth asc, reOrder desc
+	</select>
+
+	<select id="selectReplyParent" parameterType="int" resultType="ReplyDTO">
+		select *
+		from reply
+		where reNO = #{reNO}
+	</select>
+
+	<update id="updateReplyOrder" parameterType="map">
+		update reply
+		set reOrder = reOrder + 1
+		where reOrder >= #{reOrder}
+	</update>
+
+	<select id="selectReplyMaxReOrder" parameterType="int"
+		resultType="int">
+		select nvl(max(reOrder), 0)+1
+		from reply
+	</select>
+
+	<select id="selectReplyMaxReParent" parameterType="int" resultType="int">
+		select nvl(max(reParent), 0)+1
+		from reply
+	</select>
+
+	<update id="updateReplyContent" parameterType="map">
+		update reply
+		set reContent = #{reContent}
+		where reNO = #{reNO}
+	</update>
+
+	<update id="updateParentFlagToN" parameterType="int">
+		update reply
+		set reDeleteFlag = 'N'
+		where reNO = #{reNO}
+	</update>
+
+	<delete id="deleteReply" parameterType="int">
+		delete
+		from reply
+		where reNO = #{reNO}
+	</delete>
+	
+	<select id="selectByReNO" parameterType="int" resultType="ReplyDTO">
+		select * 
+		from reply 
+		where reNO = #{reNO}
+	</select>
+	
+	<update id="updateReOrderAfterDelete" parameterType="int">
+		update reply
+		set reOrder = reOrder - 1
+		where reOrder > #{reOrder}
+	</update>
+	
+	<select id="selectCountByReParent" parameterType="int" resultType="int">
+		select count(*)
+		from reply
+		where reParent = #{reParent}
+	</select>
+	
+	<update id="updateParentFlagToY" parameterType="int">
+		update reply
+		set reDeleteFlag = 'Y'
+		where reParent = #{reParent}
+	</update>
+</mapper>
