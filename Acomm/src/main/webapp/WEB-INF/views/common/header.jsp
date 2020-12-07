@@ -33,13 +33,13 @@
 				%>
 					안녕하세요.
 				<%=userName%>님 &nbsp; / &nbsp;
-		        <span class="mr-3"><strong class="text-white"><a href="LogoutServlet">로그아웃</a></strong></span>
-		        <span><strong class="text-white"><a href="MyPageServlet">마이페이지</a></strong></span>
+		        <span class="mr-3"><strong class="text-white"><a href="loginCheck/logout">로그아웃</a></strong></span>
+		        <span><strong class="text-white"><a href="loginCheck/myPage">마이페이지</a></strong></span>
 				<%
 					} else {
 				%>	      
-		        <span class="mr-3"><strong class="text-white"><a href="LoginUIServlet">로그인</a></strong></span>
-		        <span><strong class="text-white"><a href="MemberUIServlet">회원가입</a></strong></span>
+		        <span class="mr-3"><strong class="text-white"><a href="loginForm">로그인</a></strong></span>
+		        <span><strong class="text-white"><a href="memberForm">회원가입</a></strong></span>
 				<%
 					}
 				%>
@@ -51,7 +51,7 @@
 	      <div class="container">
 	        <div class="row align-items-center">
 	          <div class="col-11 col-xl-2">
-	            <h1 class="mb-0 site-logo"><a href="main.jsp" class="text-black h2 mb-0"><img src="img/logo.png"></a></h1>
+	            <h1 class="mb-0 site-logo"><a href="main" class="text-black h2 mb-0"><img src="img/logo.png"></a></h1>
 	          </div>
 	          <div class="col-12 col-md-10 d-none d-xl-block">
 	            <nav class="site-navigation position-relative text-right" role="navigation">

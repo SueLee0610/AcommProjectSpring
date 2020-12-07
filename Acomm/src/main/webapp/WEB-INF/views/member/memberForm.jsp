@@ -14,7 +14,7 @@
 				<h2 class="text-black h1 site-section-heading">회원가입</h2>
 			</div>
 		</div>
-		<form action="MemberAddServlet" method="post" class="p-5 bg-light">
+		<form action="memberAdd" method="post" class="p-5 bg-light">
 			아이디: <input type="text" name="userID" id="userID" class="form-control" required> <span
 				id="IDcheck"></span> <br> 비밀번호: <input type="password"
 				name="userPW" id="userPW" class="form-control" required>
