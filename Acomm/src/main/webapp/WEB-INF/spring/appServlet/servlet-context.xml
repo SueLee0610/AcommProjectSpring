@@ -22,6 +22,10 @@
 	<mvc:view-controller path="/loginForm" view-name="loginForm"/>
 	<mvc:view-controller path="/myPage" view-name="myPage"/>
 	
+	<!-- Product -->
+	<mvc:view-controller path="/productBoard" view-name="productBoard"/>
+	<mvc:view-controller path="/productAdd" view-name="productAdd"/>
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/" />
 	<mvc:resources mapping="/fonts/**" location="/WEB-INF/views/fonts/" />

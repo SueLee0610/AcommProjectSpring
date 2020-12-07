@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.MemberDTO;
-import com.member.MemberService;
+import com.service.MemberService;
 
 @Controller
 public class MemberController {
