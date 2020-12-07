@@ -4,7 +4,7 @@ $( () => {
 	$("#userID").on("keyup", event => {
 		$.ajax({
 			type : "GET",
-			url : "MemberIdCheckServlet",
+			url : "idDuplicateCheck",
 			dataType : "text",
 			data : {
 				userID : $("#userID").val()

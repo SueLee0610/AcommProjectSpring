@@ -35,9 +35,9 @@ int cScore = dto.getcScore();
 			</div>
 		</div>
 
-		<form action="MemberUpdateServlet" method="POST" class="p-5 bg-light">
-			이름:
-			<%=userName%><br><br> 아이디:
+		<form action="loginCheck/memberUpdate" method="POST" class="p-5 bg-light">
+			이름:<input type="text" id="userName" name="userName" value="<%=userName%>" class="form-control">
+			<br> 아이디:
 			<%=userID%><br> <input type="hidden" value="<%=userID%>"
 				name="userID" class="form-control"><br> 비밀번호: <input id="userPW" name="userPW"
 				type="password" value="<%=userPW%>" class="form-control">
@@ -57,6 +57,11 @@ int cScore = dto.getcScore();
 			</select><br><br> 수강과목:
 			<%=cName%><br><br> 강의 별점:
 			<%=cScore%>
+			<%
+			// 회원이 판매중인 상품 list 가져오기
+			List<ProductDTO> myProduct = (List<ProductDTO>) request.getAttribute("myProduct");
+			if(myProduct != null){
+			%>
 			<br><br> <input type="hidden" value="<%=cCode%>" name="cCode" class="form-control">
 			<input type="hidden" value="<%=cScore%>" name="cScore" class="form-control"> 판매중인
 			상품
@@ -69,9 +74,8 @@ int cScore = dto.getcScore();
 					</tr>
 				</thead>
 				<tbody>
-					<%
-						// 회원이 판매중인 상품 list 가져오기
-					List<ProductDTO> myProduct = (List<ProductDTO>) request.getAttribute("myProduct");
+					
+					<% 
 					for (ProductDTO pdto : myProduct) {
 						String pName = pdto.getpName();
 						String isSold = pdto.getIsSold();
@@ -86,11 +90,16 @@ int cScore = dto.getcScore();
 						<%
 							}
 						%>
-					
+
 				</tbody>
 			</table>
+			<%	
+				}
+			%>
 			<br> <input type="submit" value="수정" class="btn btn-primary btn-md text-white"> <input
 				type="button" value="Home" onClick="location.href='main'" class="btn btn-primary btn-md text-white">
+		
 		</form>
+		
 	</div>
 </div>

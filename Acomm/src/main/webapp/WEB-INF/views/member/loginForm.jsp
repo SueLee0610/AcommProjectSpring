@@ -14,7 +14,7 @@
 			</div>
 		</div>
 
-		<form action="LoginServlet" method="get" class="p-5 bg-light">
+		<form action="login" method="post" class="p-5 bg-light">
 			아이디:<input type="text" name="userID" id="userID" class="form-control"><br>
 			비밀번호:<input type="password" name="userPW" id="userPW"
 				class="form-control"><br> <input type="submit"
