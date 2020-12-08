@@ -35,11 +35,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/sumin/Workspace_spring/jar/json_simple-1.1.jar"/>
-	<classpathentry kind="lib" path="/Users/sumin/Workspace_spring/jar/mailapi.jar"/>
-	<classpathentry kind="lib" path="/Users/sumin/Workspace_spring/jar/mybatis-3.4.6.jar"/>
-	<classpathentry kind="lib" path="/Users/sumin/Workspace_spring/jar/ojdbc6_g.jar"/>
-	<classpathentry kind="lib" path="/Users/sumin/Workspace_spring/jar/pop3.jar"/>
-	<classpathentry kind="lib" path="/Users/sumin/Workspace_spring/jar/smtp.jar"/>
+	<classpathentry kind="lib" path="/Users/hanhyeseon/build_pathjar/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/hanhyeseon/build_pathjar/mybatis-3.4.6.jar"/>
+	<classpathentry kind="lib" path="/Users/hanhyeseon/build_pathjar/ojdbc6_g.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

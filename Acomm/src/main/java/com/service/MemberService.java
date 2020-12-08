@@ -1,4 +1,4 @@
-package com.member;
+package com.service;
 
 import java.util.Map;
 
