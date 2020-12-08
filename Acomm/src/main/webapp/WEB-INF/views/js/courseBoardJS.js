@@ -4,14 +4,13 @@ $( () => {
 	$(".courseInfo").on("click", event => {
 		$.ajax({
 			type : "GET",
-			url : "CourseInfoServlet",
+			url : "CourseInfo",
 			dataType : "json",
 			data : {
 				courseInfo : event.target.getAttribute("id")
 			},
-			success : function(data){
+			success : function(value){
 				$("#courseTable > tbody").empty();
-				$.each(data, function(key, value) {
 					for(let i = 0; i < value.length; i++){
 						let str = '<tr><td>';
 							str += value[i].cName + '</td><td>';
@@ -23,7 +22,6 @@ $( () => {
 							str += '</tr>';
 						$("#courseTable > tbody").append(str);
 					};
-				});
 			},
 			error : function(xhr, status, responseData) {
 				console.log("error");
@@ -38,5 +36,5 @@ $( () => {
 // 버튼 클릭 시 해당 CourseDTO에 대한 cCode 넘겨주기
 $(document).on("click",".courseRetrieve", event => {
 	let cCode = event.target.id;
-	$(location).attr('href', 'CourseRetrieveServlet?cCode='+cCode);
+	$(location).attr('href', 'CourseRetrieve?cCode='+cCode);
 });	
