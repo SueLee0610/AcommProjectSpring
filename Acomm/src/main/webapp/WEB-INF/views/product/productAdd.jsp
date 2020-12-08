@@ -27,7 +27,7 @@
 	String userID = memberDTO.getUserID();
 %>
 
-<form action="ProductAddServlet" method="post" enctype="multipart/form-data"  class="p-5 bg-white">
+<form action="loginCheck/productAdd" method="post" enctype="multipart/form-data"  class="p-5 bg-white">
 	<div class="row mb-5">
             <div class="col-12 text-center">
                 <h2 class="text-black h1 site-section-heading">상품등록</h2>
