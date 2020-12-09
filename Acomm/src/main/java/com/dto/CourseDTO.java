@@ -1,5 +1,8 @@
 package com.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("CourseDTO")
 public class CourseDTO {
 	
 	private String cName;
