@@ -36,8 +36,8 @@ $( () => {
 		<!-- 작성자와 로그인된 아이디가 같을 경우 [삭제하기] 버튼 보여주기 -->
 		<c:choose>
 		<c:when test="${loginedId eq productRetrieve.userid}">
-			<input type="button" value="수정하기" class="btn btn-info btn-lg mt-2" onclick="location.href='productUpdateUIServlet'">
-			<input type="button" value="삭제하기" class="btn btn-danger btn-lg mt-2" onclick="location.href='productDelete?pCode=${productRetrieve.pCode }'">
+			<input type="button" value="수정하기" class="btn btn-info btn-lg mt-2" onclick="location.href='productUpdate'">
+			<input type="button" value="삭제하기" class="btn btn-danger btn-lg mt-2" onclick="location.href='loginCheck/productDelete?pCode=${productRetrieve.pCode }'">
 			
 			<!-- 해당 상품이 판매중인 상품일 경우 [판매완료] 버튼 보여주기 -->
 			<c:if test="${productRetrieve.isSold eq 'n'}">

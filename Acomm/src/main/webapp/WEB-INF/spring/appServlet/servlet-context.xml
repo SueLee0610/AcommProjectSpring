@@ -27,6 +27,7 @@
 	<!-- Product -->
 	<mvc:view-controller path="/productBoard" view-name="productBoard"/>
 	<mvc:view-controller path="/productAdd" view-name="productAdd"/>
+	<mvc:view-controller path="/productUpdate" view-name="productUpdate"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/" />
