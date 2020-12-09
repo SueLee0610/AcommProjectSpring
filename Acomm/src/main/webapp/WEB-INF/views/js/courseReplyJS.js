@@ -7,7 +7,7 @@ $(document).on("click", ".replyAdd", event => {
 	const reContent = $("#reContent").val();
 	$.ajax({
 		type: "POST",
-		url: "CourseReplyAddServlet",
+		url: "CourseReplyAdd",
 		dataType: "json",
 		data: {
 			cCode: cCode,
@@ -62,8 +62,8 @@ $(document).on("click", ".replyDelete", event => {
 
 	$.ajax({
 		type: "POST",
-		url: "CourseReplyDeleteServlet",
-		dataType: "json",
+		url: "CourseReplyDelete",
+		dataType: "text",
 		data: {
 			reNO: reNO
 		},
@@ -136,7 +136,7 @@ $(document).on("click", ".reReplyAdd", event => {
 
 	$.ajax({
 		type: "POST",
-		url: "CourseReplyAddServlet",
+		url: "CourseReplyAdd",
 		dataType: "json",
 		data: {
 			reNO: reNO,
@@ -186,8 +186,8 @@ $(document).on("click", '.reReplyUpdate', event => {
 	let replyDia = document.getElementById("reReply" + reNO);
 	$.ajax({
 		type: "POST",
-		url: "CourseReplyUpdateServlet",
-		dataType: "json",
+		url: "CourseReplyUpdate",
+		dataType: "text",
 		data: {
 			reNO: reNO,
 			cCode: cCode,

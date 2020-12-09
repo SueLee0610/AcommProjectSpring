@@ -36,4 +36,9 @@ public class MemberService {
 	public void memberUpdate(MemberDTO member) {
 		dao.memberUpdate(member);
 	}
+  
+	public String myPageCName(int cCode) {
+		String result = dao.myPageCName(cCode);
+		return result;
+	}
 }
