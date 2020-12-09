@@ -11,9 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
-import com.member.MemberService;
+import com.service.MemberService;
 
 @Controller
 public class MemberController {
@@ -52,12 +53,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/loginCheck/myPage")
-	public String myPage(HttpSession session) {
+	public String myPage(RedirectAttributes redirectA, HttpSession session) {
 		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		String userid = dto.getUserID();
 		// db에서 id에 해당하는 dto 세션에 넣어주기
 		MemberDTO member = service.myPage(userid);
+		String cName = service.myPageCName(member.getcCode());
+		redirectA.addFlashAttribute("cName", cName);
 		session.setAttribute("login", member);
 		return "redirect:../myPage";
 	}

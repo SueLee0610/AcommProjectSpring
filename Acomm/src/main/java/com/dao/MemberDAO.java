@@ -36,4 +36,9 @@ public class MemberDAO {
 	public void memberUpdate(MemberDTO member) {
 		template.update("MemberMapper.memberUpdate", member);
 	}
+	
+	public String myPageCName(int cCode) {
+		String result = template.selectOne("MemberMapper.myPageCName", cCode);
+		return result;
+	}
 }
