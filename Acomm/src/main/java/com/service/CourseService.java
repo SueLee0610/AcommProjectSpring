@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.CourseDAO;
 import com.dto.CourseDTO;
+import com.dto.OrderCDTO;
 
 @Service
 public class CourseService {
@@ -34,6 +35,10 @@ public class CourseService {
 		return result;
 	}
 	
+	public int insertOrderC(OrderCDTO dto) {
+		int result = dao.insertOrderC(dto);
+		return result;
+	}
 	
 	
 	

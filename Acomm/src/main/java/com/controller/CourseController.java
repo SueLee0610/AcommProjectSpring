@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.CourseDTO;
+import com.dto.MemberDTO;
+import com.dto.OrderCDTO;
 import com.dto.ReplyDTO;
 import com.service.CourseService;
+import com.service.MemberService;
 import com.service.ReplyService;
 
 @Controller
@@ -28,6 +31,9 @@ public class CourseController {
 
 	@Autowired
 	ReplyService replyService;
+	
+	@Autowired
+	MemberService memberService;
 
 	@RequestMapping(value = "/CourseInfo", produces = "application/json")
 	@ResponseBody
@@ -47,8 +53,8 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/CourseRetrieve", method = RequestMethod.GET)
-	public ModelAndView CourseRetrieve(@RequestParam int cCode) {
-
+	public ModelAndView CourseRetrieve(@RequestParam int cCode, HttpSession session) {
+		
 		// age 정보 가져오기 위해 cCode 파싱
 		List<Integer> scoreList = service.selectScore(cCode);
 
@@ -164,5 +170,41 @@ public class CourseController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "loginCheck/CourseOrder")
+	public String courseOrder() {
+		return "redirect:../courseOrder";
+	}
+	
+	@RequestMapping(value = "loginCheck/CourseOrderDone")
+	public String courseOrderDone(@RequestParam String payMethod, HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		CourseDTO courseDTO = (CourseDTO) session.getAttribute("courseDTO");
+		String cName = courseDTO.getcName();
+		int cCode = courseDTO.getcCode();
+		int cPrice = courseDTO.getcPrice();
+		String cImage = courseDTO.getcImage();
+		String cSTARTDATE = courseDTO.getcStartDate();
+		String cENDDATE = courseDTO.getcEndDate();
+		int cTOTALDATE = courseDTO.getcTotalDate();
+		String userId = dto.getUserID();
+		String userName = dto.getUserName();
+		String phoneNum = dto.getPhoneNum();
+		String email1 = dto.getEmail1();
+		String email2 = dto.getEmail2();
+
+		// orderC DTO 객체 생성
+		OrderCDTO oDTO = new OrderCDTO(0, cName, cCode, cPrice, cImage, cSTARTDATE, cENDDATE, cTOTALDATE, userId,
+				userName, phoneNum, email1, email2, payMethod, null);
+		
+		// 주문테이블 insert
+		service.insertOrderC(oDTO);
+		
+		// 회원 cCode 정보 update
+		memberService.updateCcode(oDTO);
+		
+		return  "redirect:../main";
+	}
+	
 
 }

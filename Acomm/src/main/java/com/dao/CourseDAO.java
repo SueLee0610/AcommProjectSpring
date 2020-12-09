@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.CourseDTO;
+import com.dto.OrderCDTO;
 
 @Repository
 public class CourseDAO {
@@ -31,6 +32,11 @@ public class CourseDAO {
 
 	public int currentStudNum(int cCode) {
 		int result = template.selectOne("CourseMapper.currentStudNum", cCode);
+		return result;
+	}
+	
+	public int insertOrderC(OrderCDTO dto) {
+		int result = template.insert("CourseMapper.insertOrderC", dto);
 		return result;
 	}
 	

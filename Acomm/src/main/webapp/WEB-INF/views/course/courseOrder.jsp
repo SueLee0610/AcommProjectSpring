@@ -2,6 +2,8 @@
 <%@page import="com.dto.CourseDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <link rel="stylesheet" href="fonts/icomoon/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -70,7 +72,7 @@ String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
 				<h3 class="text-black h1 site-section-heading">결제수단</h3>
 			</div>
 		</div>
-		<form action="CourseOrderDoneServlet" method="post" class="p-5 bg-white">
+		<form action=loginCheck/CourseOrderDone method="post" class="p-5 bg-white">
 			<div class="">
 				<input type="radio" id="creditCard" name="payMethod" checked>신용카드<br>
 				<input type="radio" id="toss" name="payMethod">계좌이체<br>

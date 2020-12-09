@@ -89,7 +89,7 @@ for (int age : ageList) {
 session.removeAttribute("courseDetail");
 %>
 <div class="cRetrieveContainer">
-	<form action="CourseOrderServlet" method="post">
+	<form action="loginCheck/CourseOrder" method="post">
 		<div class="jumbotron bg-white mb-0">
 			<span id="cImage"><img src="img/<%=cImage%>"></span> <br><br>
 			<h1 id="cName" class="display-5"><%=cName%></h1>
