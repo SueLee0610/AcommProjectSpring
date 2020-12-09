@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -87,6 +88,18 @@ public class ProductController {
 		
 		// 스트림 닫기
 		imageStream.close();
+		return "redirect:../productBoard";
+	}
+
+	@RequestMapping(value = "/loginCheck/productUpdate", method = RequestMethod.POST)
+	public String productUpdate(@ModelAttribute ProductDTO pdto) {
+		service.productUpdate(pdto);
+		return "redirect:../productRetrieve?pCode="+pdto.getpCode();
+	}
+	
+	@RequestMapping(value = "/loginCheck/productDelete")
+	public String productUpdate(@RequestParam int pCode) {
+		service.deleteProduct(pCode);
 		return "redirect:../productBoard";
 	}
 
