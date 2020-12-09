@@ -24,12 +24,20 @@
 	<mvc:view-controller path="/courseBoard" view-name="courseBoard"/>
 	<mvc:view-controller path="/courseRetrieve" view-name="courseRetrieve"/>
 	
+	<!-- Product -->
+	<mvc:view-controller path="/productBoard" view-name="productBoard"/>
+	<mvc:view-controller path="/productAdd" view-name="productAdd"/>
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/" />
 	<mvc:resources mapping="/fonts/**" location="/WEB-INF/views/fonts/" />
 	<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/" />
 	<mvc:resources mapping="/img/**" location="/WEB-INF/views/img/" />
 	<mvc:resources mapping="/vendor/**" location="/WEB-INF/views/vendor/" />
+	
+	<!-- resource mapping -->
+	<!-- location : 물리적 주소 / mapping : 가상 주소 -->
+	<mvc:resources location="/WEB-INF/upload/" mapping="/upload/**"/>
 	
 	<!-- Interceptor 등록 시작 -->
 	<mvc:interceptors>
@@ -49,8 +57,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	
 	
 	<context:property-placeholder
 		location="classpath:com/config/jdbc.properties" />
@@ -89,6 +95,13 @@
 
 	<beans:bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg name="sqlSessionFactory" ref="sessionFactory" />
+	</beans:bean>
+	
+	<!-- 파일업로드에 필요한 MultipartResolver bean -->
+	<beans:bean id="mulitpartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 파일업로드 용량 -->
+		<beans:property name="maxUploadSize" value="50485760" />
 	</beans:bean>
 
 </beans:beans>
