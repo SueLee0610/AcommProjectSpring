@@ -1,30 +1,10 @@
-<%@page import="com.dto.MemberDTO"%>
-<%@page import="com.dto.CourseDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <link rel="stylesheet" href="fonts/icomoon/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/courseOrder.css">
 
-<%
-	// 코스 dto 정보 파싱
-CourseDTO courseDTO = (CourseDTO) session.getAttribute("courseDTO");
-String cImage = courseDTO.getcImage();
-String cName = courseDTO.getcName();
-String cStartDate = courseDTO.getcStartDate();
-String cEndDate = courseDTO.getcEndDate();
-int cTotalDate = courseDTO.getcTotalDate();
-int cPrice = courseDTO.getcPrice();
-
-// 로그인된 member 정보 파싱
-MemberDTO memberDTO = (MemberDTO) session.getAttribute("login");
-String userName = memberDTO.getUserName();
-String phoneNum = memberDTO.getPhoneNum();
-String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
-%>
 
 <div class="containerMember p-5 bg-light">
 	<div class="innerContainer" >
@@ -44,10 +24,10 @@ String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="col"><img src="./img/<%=cImage%>" width="200px"></th>
-					<th scope="col"><%=cName%></th>
-					<th scope="col"><%=cTotalDate%>일</th>
-					<th scope="col"><%=cPrice%>원</th>
+					<th scope="col"><img src="./img/${courseDTO.cImage}" width="200px"></th>
+					<th scope="col">${courseDTO.cName}</th>
+					<th scope="col">${courseDTO.cTotalDate}일</th>
+					<th scope="col">${courseDTO.cPrice}원</th>
 				</tr>
 			</tbody>
 		</table>
@@ -60,11 +40,11 @@ String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
 		<br> 
 		<div class="p-4 mb-3 bg-white">
 		 <p class="mb-0 font-weight-bold">이름</p>
-              <p class="mb-4"><%=userName%></p>
+              <p class="mb-4">${login.userName}</p>
               <p class="mb-0 font-weight-bold">연락처</p>
-              <p class="mb-4"><%=phoneNum%></p>
+              <p class="mb-4">${login.phoneNum}</p>
               <p class="mb-0 font-weight-bold">이메일</p>
-              <p class="mb-0"><%=email%></p>
+              <p class="mb-0">${login.email1}@${login.email2}</p>
 		</div>
 		<br>
 		<div class="row mb-5">

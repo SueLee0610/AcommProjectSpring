@@ -54,6 +54,23 @@ public class CourseController {
 
 	@RequestMapping(value = "/CourseRetrieve", method = RequestMethod.GET)
 	public ModelAndView CourseRetrieve(@RequestParam int cCode, HttpSession session) {
+		// session에서 CourseDTO 2개가 담긴 리스트 받아오기
+		List<CourseDTO> dtoList = (List<CourseDTO>) session.getAttribute("courseDetail");
+		
+		// 리스트에서 클릭한 cCode에 해당하는 CourseDTO 선택
+		CourseDTO courseDTO = null;
+		for (CourseDTO dto : dtoList) {
+			if (cCode == dto.getcCode()) {
+				courseDTO = dto;
+				break;
+			}
+		}
+		// 주문페이지 사용을 위해 
+		// 리스트에서 클릭한 cCode에 해당하는 CourseDTO 정보 세션 저장,
+		session.setAttribute("courseDTO", courseDTO);
+		
+		// session에 담긴 두개의 강의 정보 삭제
+		session.removeAttribute("courseDetail");
 		
 		// age 정보 가져오기 위해 cCode 파싱
 		List<Integer> scoreList = service.selectScore(cCode);
@@ -61,15 +78,51 @@ public class CourseController {
 		// age, score 레코드 받아와서 list에 저장
 		List<Integer> ageList = service.selectAge(cCode);
 
-		// 해당 cCode로 가입한 멤버 수가져오기
+		// 나이대 구간별 인원 count하기
+		int age21_25 = 0;
+		int age26_30 = 0;
+		int age31_35 = 0;
+		int age36_40 = 0;
+		
+		for (int age : ageList) {
+			if (age >= 20 && age <= 24) {
+				age21_25++;
+			} else if (age <= 29) {
+				age26_30++;
+			} else if (age <= 34) {
+				age31_35++;
+			} else if (age <= 39) {
+				age36_40++;
+			}
+		}
+		
+		// map에 나이대 구간별 인원 값 넣어주기 
+		HashMap<String, Integer> ageListCount = new HashMap<String, Integer>();
+		ageListCount.put("age21_25", age21_25);
+		ageListCount.put("age26_30", age26_30);
+		ageListCount.put("age31_35", age31_35);
+		ageListCount.put("age36_40", age36_40);
+		
+		// 해당 cCode로 가입한 멤버 수 가져오기
 		int currentStudNum = service.currentStudNum(cCode);
-
+		
+		// 해당 강의 평점 구하기 
+		float scoreAvg = 0;
+		if (scoreList.size() != 0) {
+			for (Integer x : scoreList) {
+				scoreAvg += x;
+			}
+			scoreAvg /= scoreList.size();
+		} else {
+			scoreAvg = 0;
+		}
+		
 		List<ReplyDTO> replyList = replyService.selectReplyList(cCode);
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("ageList", ageList);
-		mav.addObject("scoreList", scoreList);
-		mav.addObject("currentStudNum", currentStudNum);
+		mav.addObject("scoreAvg", scoreAvg);
+		mav.addObject("ageListCount", ageListCount);
+		mav.addObject("currentStudNum", currentStudNum); 
 		mav.addObject("replyList", replyList);
 		mav.setViewName("courseRetrieve");
 		
