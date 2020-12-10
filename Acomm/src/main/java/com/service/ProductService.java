@@ -1,11 +1,10 @@
 package com.service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.ProductDAO;
 import com.dto.ProductDTO;
@@ -39,11 +38,7 @@ public class ProductService {
 		dao.deleteProduct(pCode);
 	}
 
-	public List<ProductDTO> search(String searchName, String searchTerm) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("searchName", searchName);
-		map.put("searchTerm", searchTerm);
-
+	public List<ProductDTO> search(Map<String, Object> map) {
 		List<ProductDTO> result = dao.search(map);
 		return result;
 	}

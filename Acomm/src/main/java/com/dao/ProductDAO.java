@@ -1,7 +1,7 @@
 package com.dao;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class ProductDAO {
 		template.delete("ProductMapper.deleteProduct", pCode);
 	}
 
-	public List<ProductDTO> search(HashMap<String, String> map) {
+	public List<ProductDTO> search(Map<String, Object> map) {
 		List<ProductDTO> result = template.selectList("ProductMapper.search", map);
 		return result;
 	}

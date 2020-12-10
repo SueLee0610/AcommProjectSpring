@@ -5,11 +5,15 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -101,6 +106,28 @@ public class ProductController {
 	public String productUpdate(@RequestParam int pCode) {
 		service.deleteProduct(pCode);
 		return "redirect:../productBoard";
+	}
+	
+	@RequestMapping(value = "/productSearch")
+	@ResponseBody
+	public JSONObject productSearch(@RequestParam Map<String, Object> params, HttpServletResponse response) {
+		// 검색어에 해당하는 상품 정보 가져오기
+		List<ProductDTO> list = service.search(params);
+		JSONObject jsonObject = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		for(int i =0; i<list.size(); i++) {
+			JSONObject dto = new JSONObject();
+			dto.put("pCode", list.get(i).getpCode());
+			dto.put("isSold", list.get(i).getIsSold());
+			dto.put("userid", list.get(i).getUserid());
+			dto.put("pPrice", list.get(i).getpPrice());
+			dto.put("pName", list.get(i).getpName());
+			dto.put("pContent", list.get(i).getpContent());
+			dto.put("pImage", list.get(i).getpImage());
+			jsonArray.add(dto);
+		}
+		jsonObject.put("pDTO", jsonArray);
+		return jsonObject;
 	}
 
 }
