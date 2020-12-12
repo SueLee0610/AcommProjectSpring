@@ -89,5 +89,10 @@ public class ProductController {
 		imageStream.close();
 		return "redirect:../productBoard";
 	}
+	
+	@RequestMapping(value = "productChat")
+	public String productChat() {
+		return "productChat";
+	}
 
 }
