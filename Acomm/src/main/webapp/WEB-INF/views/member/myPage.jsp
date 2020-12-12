@@ -70,7 +70,7 @@
 								<td><a
 									href="ProductRetrieveServlet?pCode=${product.pCode}>">${product.pCode}${product.pName}</a></td>
 								<td>${product.pPrice}원</td>
-								<td>${product.isSold}></td>
+								<td>${product.isSold}</td>
 							<tr>
 						</c:forEach>
 					</tbody>

@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.CourseDTO;
+import com.dto.MemberDTO;
+import com.dto.OrderCDTO;
 import com.dto.ReplyDTO;
 import com.service.CourseService;
+import com.service.MemberService;
 import com.service.ReplyService;
 
 @Controller
@@ -28,6 +31,9 @@ public class CourseController {
 
 	@Autowired
 	ReplyService replyService;
+	
+	@Autowired
+	MemberService memberService;
 
 	@RequestMapping(value = "/CourseInfo", produces = "application/json")
 	@ResponseBody
@@ -47,23 +53,76 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/CourseRetrieve", method = RequestMethod.GET)
-	public ModelAndView CourseRetrieve(@RequestParam int cCode) {
-
+	public ModelAndView CourseRetrieve(@RequestParam int cCode, HttpSession session) {
+		// session에서 CourseDTO 2개가 담긴 리스트 받아오기
+		List<CourseDTO> dtoList = (List<CourseDTO>) session.getAttribute("courseDetail");
+		
+		// 리스트에서 클릭한 cCode에 해당하는 CourseDTO 선택
+		CourseDTO courseDTO = null;
+		for (CourseDTO dto : dtoList) {
+			if (cCode == dto.getcCode()) {
+				courseDTO = dto;
+				break;
+			}
+		}
+		// 주문페이지 사용을 위해 
+		// 리스트에서 클릭한 cCode에 해당하는 CourseDTO 정보 세션 저장,
+		session.setAttribute("courseDTO", courseDTO);
+		
+		// session에 담긴 두개의 강의 정보 삭제
+		session.removeAttribute("courseDetail");
+		
 		// age 정보 가져오기 위해 cCode 파싱
 		List<Integer> scoreList = service.selectScore(cCode);
 
 		// age, score 레코드 받아와서 list에 저장
 		List<Integer> ageList = service.selectAge(cCode);
 
-		// 해당 cCode로 가입한 멤버 수가져오기
+		// 나이대 구간별 인원 count하기
+		int age21_25 = 0;
+		int age26_30 = 0;
+		int age31_35 = 0;
+		int age36_40 = 0;
+		
+		for (int age : ageList) {
+			if (age >= 20 && age <= 24) {
+				age21_25++;
+			} else if (age <= 29) {
+				age26_30++;
+			} else if (age <= 34) {
+				age31_35++;
+			} else if (age <= 39) {
+				age36_40++;
+			}
+		}
+		
+		// map에 나이대 구간별 인원 값 넣어주기 
+		HashMap<String, Integer> ageListCount = new HashMap<String, Integer>();
+		ageListCount.put("age21_25", age21_25);
+		ageListCount.put("age26_30", age26_30);
+		ageListCount.put("age31_35", age31_35);
+		ageListCount.put("age36_40", age36_40);
+		
+		// 해당 cCode로 가입한 멤버 수 가져오기
 		int currentStudNum = service.currentStudNum(cCode);
-
+		
+		// 해당 강의 평점 구하기 
+		float scoreAvg = 0;
+		if (scoreList.size() != 0) {
+			for (Integer x : scoreList) {
+				scoreAvg += x;
+			}
+			scoreAvg /= scoreList.size();
+		} else {
+			scoreAvg = 0;
+		}
+		
 		List<ReplyDTO> replyList = replyService.selectReplyList(cCode);
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("ageList", ageList);
-		mav.addObject("scoreList", scoreList);
-		mav.addObject("currentStudNum", currentStudNum);
+		mav.addObject("scoreAvg", scoreAvg);
+		mav.addObject("ageListCount", ageListCount);
+		mav.addObject("currentStudNum", currentStudNum); 
 		mav.addObject("replyList", replyList);
 		mav.setViewName("courseRetrieve");
 		
@@ -164,5 +223,41 @@ public class CourseController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "loginCheck/CourseOrder")
+	public String courseOrder() {
+		return "redirect:../courseOrder";
+	}
+	
+	@RequestMapping(value = "loginCheck/CourseOrderDone")
+	public String courseOrderDone(@RequestParam String payMethod, HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		CourseDTO courseDTO = (CourseDTO) session.getAttribute("courseDTO");
+		String cName = courseDTO.getcName();
+		int cCode = courseDTO.getcCode();
+		int cPrice = courseDTO.getcPrice();
+		String cImage = courseDTO.getcImage();
+		String cSTARTDATE = courseDTO.getcStartDate();
+		String cENDDATE = courseDTO.getcEndDate();
+		int cTOTALDATE = courseDTO.getcTotalDate();
+		String userId = dto.getUserID();
+		String userName = dto.getUserName();
+		String phoneNum = dto.getPhoneNum();
+		String email1 = dto.getEmail1();
+		String email2 = dto.getEmail2();
+
+		// orderC DTO 객체 생성
+		OrderCDTO oDTO = new OrderCDTO(0, cName, cCode, cPrice, cImage, cSTARTDATE, cENDDATE, cTOTALDATE, userId,
+				userName, phoneNum, email1, email2, payMethod, null);
+		
+		// 주문테이블 insert
+		service.insertOrderC(oDTO);
+		
+		// 회원 cCode 정보 update
+		memberService.updateCcode(oDTO);
+		
+		return  "redirect:../main";
+	}
+	
 
 }
