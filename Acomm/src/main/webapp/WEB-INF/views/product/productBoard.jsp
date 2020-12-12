@@ -32,6 +32,10 @@
 				<button value="등록하기" class="btn btn-primary text-white"
 					onclick="location.href='productAdd'">상품등록</button>
 			</div>
+			<div class="input-group-append">
+				<button value="채팅하기" class="btn btn-primary text-white"
+					onclick="location.href='productChat?userID=${memberDTO.userID}'">채팅하기</button>
+			</div>
 		</c:if>
 	</div>
 	<!-- 상품 목록 -->
