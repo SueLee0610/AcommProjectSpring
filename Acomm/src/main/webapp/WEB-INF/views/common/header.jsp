@@ -56,7 +56,7 @@
 	          <div class="col-12 col-md-10 d-none d-xl-block">
 	            <nav class="site-navigation position-relative text-right" role="navigation">
 	              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-	                <li><a href="main.jsp" class="nav-link">Home</a></li>
+	                <li><a href="main" class="nav-link">Home</a></li>
 	                <li><a href="courseBoard" class="nav-link">강의게시판</a></li>
 	                <li>
 	                  <a href="productBoard" class="nav-link">중고게시판</a>
