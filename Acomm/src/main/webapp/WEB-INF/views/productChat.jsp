@@ -30,7 +30,7 @@
 </body>
 <script type="text/javascript">
 	let textarea = document.getElementById("messageWindow");
-	let webSocket = new WebSocket('ws://localhost:8083/Acomm/broadcasting');
+	let webSocket = new WebSocket('ws://localhost:8095/Acomm/broadcasting');
 	let inputMessage = document.getElementById('inputMessage');
 	
 	webSocket.onerror = function(event) {
