@@ -63,7 +63,7 @@
 				<div class="col-md-12">
 					<div class="custom-file">
 						<input type="file" name="pImage" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" accept="image/png, image/jpeg, image/jpg" required>
-						<label class="custom-file-label" for="inputGroupFile04">파일선택</label>
+						<label class="custom-file-label" for="inputGroupFile04">파일선택 *(50MB 제한)</label>
 					</div>
 				</div>
 			</div>
