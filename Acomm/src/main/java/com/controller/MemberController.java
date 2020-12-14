@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,15 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
+import com.dto.ProductDTO;
 import com.service.MemberService;
+import com.service.ProductService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	ProductService productService;
 
 	@RequestMapping(value = "/memberAdd")
 	public String memberAdd(MemberDTO member, Model model) { 
@@ -52,13 +59,23 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/loginCheck/myPage")
-	public String myPage(HttpSession session) {
+	public String myPage(RedirectAttributes redirectA, HttpSession session) {
 		
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		String userid = dto.getUserID();
 		// db에서 id에 해당하는 dto 세션에 넣어주기
 		MemberDTO member = service.myPage(userid);
+		// 수강중인 과목코드로 과목명 가져오기 
+		String cName = service.myPageCName(member.getcCode());
+		
+		// 회원이 판매중인 상품정보 가져오기
+		List<ProductDTO> myProduct = productService.selectMyProduct(userid);
+		
+		// 데이터 전송 
 		session.setAttribute("login", member);
+		redirectA.addFlashAttribute("cName", cName);
+		redirectA.addFlashAttribute("myProduct", myProduct);
+		
 		return "redirect:../myPage";
 	}
 	

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.dto.MemberDTO"%>
-
-
+	
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(() => {
@@ -26,7 +27,7 @@
 	String userID = memberDTO.getUserID();
 %>
 
-<form action="ProductAddServlet" method="post" enctype="multipart/form-data"  class="p-5 bg-white">
+<form action="loginCheck/productAdd" method="post" enctype="multipart/form-data"  class="p-5 bg-white">
 	<div class="row mb-5">
             <div class="col-12 text-center">
                 <h2 class="text-black h1 site-section-heading">상품등록</h2>
@@ -73,7 +74,6 @@
                   <button value="등록하기" class="btn btn-secondary btn-md text-white" onclick="location.href='ProductBoardServlet'">상품목록</button>
                 </div>
               </div>
-                              
 </form>
 </div>
 </div>

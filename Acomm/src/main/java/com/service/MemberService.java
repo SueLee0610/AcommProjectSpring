@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.MemberDAO;
 import com.dto.MemberDTO;
+import com.dto.OrderCDTO;
 
 @Service
 public class MemberService {
@@ -35,5 +36,15 @@ public class MemberService {
 
 	public void memberUpdate(MemberDTO member) {
 		dao.memberUpdate(member);
+	}
+  
+	public String myPageCName(int cCode) {
+		String result = dao.myPageCName(cCode);
+		return result;
+	}
+	
+	public int updateCcode(OrderCDTO dto) {
+		int result =  dao.updateCcode(dto);
+		return result;
 	}
 }

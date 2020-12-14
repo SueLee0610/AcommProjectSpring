@@ -59,7 +59,7 @@
 	                <li><a href="main.jsp" class="nav-link">Home</a></li>
 	                <li><a href="courseBoard" class="nav-link">강의게시판</a></li>
 	                <li>
-	                  <a href="ProductBoardServlet" class="nav-link">중고게시판</a>
+	                  <a href="productBoard" class="nav-link">중고게시판</a>
 	                </li>
 	                <li>
 	                  <a href="freeBoardList" class="nav-link">자유게시판</a>

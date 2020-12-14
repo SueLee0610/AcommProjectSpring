@@ -35,13 +35,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/json_simple-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/jstl.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/mailapi.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/mybatis-3.4.6.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/ojdbc6_g.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/pop3.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/smtp.jar"/>
-	<classpathentry kind="lib" path="C:/sts/AcommProjectSpring/AcommProjectSpring/Acomm/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.MemberDTO;
+import com.dto.OrderCDTO;
 
 @Repository
 public class MemberDAO {
@@ -35,5 +36,15 @@ public class MemberDAO {
 
 	public void memberUpdate(MemberDTO member) {
 		template.update("MemberMapper.memberUpdate", member);
+	}
+	
+	public String myPageCName(int cCode) {
+		String result = template.selectOne("MemberMapper.myPageCName", cCode);
+		return result;
+	}
+	
+	public int updateCcode(OrderCDTO dto) {
+		int result = template.update("MemberMapper.updateCcode", dto);
+		return result;
 	}
 }
