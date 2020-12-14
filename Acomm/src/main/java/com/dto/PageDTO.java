@@ -6,7 +6,7 @@ public class PageDTO {
 
 	private List<FreeBoardDTO> list; //사원정보 저장
 	private int curPage; //현재 페이지 번호
-	private int perPage=5; //한 페이지당 게시물 수
+	private int perPage=3; //한 페이지당 게시물 수
 	private int totalCount; //전체 게시물 수
 	
 	public List<FreeBoardDTO> getList() {
