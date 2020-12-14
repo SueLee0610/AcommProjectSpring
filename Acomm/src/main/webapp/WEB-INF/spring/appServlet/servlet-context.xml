@@ -58,10 +58,10 @@
 		location="classpath:com/config/jdbc.properties" />
 	<beans:bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
-		<beans:property name="driverClassName" value="${oracle.driver}"></beans:property>
-		<beans:property name="url" value="${oracle.url}"></beans:property>
-		<beans:property name="username" value="${oracle.username}"></beans:property>
-		<beans:property name="password" value="${oracle.password}"></beans:property>
+		<beans:property name="driverClassName" value="${driver}"></beans:property>
+		<beans:property name="url" value="${url}"></beans:property>
+		<beans:property name="username" value="${username}"></beans:property>
+		<beans:property name="password" value="${password}"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
