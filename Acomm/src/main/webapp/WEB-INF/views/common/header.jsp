@@ -62,7 +62,7 @@
 	                  <a href="ProductBoardServlet" class="nav-link">중고게시판</a>
 	                </li>
 	                <li>
-	                  <a href="FreeBoardListServlet" class="nav-link">자유게시판</a>
+	                  <a href="freeBoardList" class="nav-link">자유게시판</a>
 	                </li>
 	                <li><a href="#blog-section" class="nav-link">Blog</a></li>
 	                <li><a href="#contact-section" class="nav-link">Contact</a></li>

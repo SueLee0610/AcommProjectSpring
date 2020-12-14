@@ -7,6 +7,9 @@ public class FreeBoardDTO {
 	private String userid;
 	private String content;
 	private String writeday;
+	private String placeName;
+	private String placeLa;
+	private String placeMa;
 	private int readCnt;
 	
 	public FreeBoardDTO() {
@@ -14,13 +17,17 @@ public class FreeBoardDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FreeBoardDTO(int num, String title, String userid, String content, String writeday, int readCnt) {
+	public FreeBoardDTO(int num, String title, String userid, String content, String writeday, String placeName,
+			String placeLa, String placeMa, int readCnt) {
 		super();
 		this.num = num;
 		this.title = title;
 		this.userid = userid;
 		this.content = content;
 		this.writeday = writeday;
+		this.placeName = placeName;
+		this.placeLa = placeLa;
+		this.placeMa = placeMa;
 		this.readCnt = readCnt;
 	}
 
@@ -64,6 +71,30 @@ public class FreeBoardDTO {
 		this.writeday = writeday;
 	}
 
+	public String getPlaceName() {
+		return placeName;
+	}
+
+	public void setPlaceName(String placeName) {
+		this.placeName = placeName;
+	}
+
+	public String getPlaceLa() {
+		return placeLa;
+	}
+
+	public void setPlaceLa(String placeLa) {
+		this.placeLa = placeLa;
+	}
+
+	public String getPlaceMa() {
+		return placeMa;
+	}
+
+	public void setPlaceMa(String placeMa) {
+		this.placeMa = placeMa;
+	}
+
 	public int getReadCnt() {
 		return readCnt;
 	}
@@ -75,7 +106,8 @@ public class FreeBoardDTO {
 	@Override
 	public String toString() {
 		return "FreeBoardDTO [num=" + num + ", title=" + title + ", userid=" + userid + ", content=" + content
-				+ ", writeday=" + writeday + ", readCnt=" + readCnt + "]";
+				+ ", writeday=" + writeday + ", placeName=" + placeName + ", placeLa=" + placeLa + ", placeMa="
+				+ placeMa + ", readCnt=" + readCnt + "]";
 	}
-
+	
 }

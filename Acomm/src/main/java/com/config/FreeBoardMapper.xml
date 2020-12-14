@@ -49,20 +49,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		to_char(writeday,'yyyy/MM/dd')
 		writeday,readCnt
 		from freeBoard
-
+		
 		<!-- 오름차순 정렬 -->
-		order by num asc
+		order by num asc		
 	</select>
 	
 	<!-- 게시글 작성,생성 -->
 	<insert id="insert" parameterType="FreeBoardDTO">
-		insert into freeBoard(num, title, userid, content)
-		values(freeBoard_seq.nextval, #{title}, #{userid}, #{content})
+		insert into freeBoard(num, title, userid, content, placeName, placeLa, placeMa)
+		values(freeBoard_seq.nextval, #{title}, #{userid}, #{content}, #{placeName}, #{placeLa}, #{placeMa})
 	</insert>
 	
-	<!-- 게시글 검색 -->
+	<!-- 게시글 보기 -->
 	<select id="retrieve" resultType="FreeBoardDTO" parameterType="int">
-		select num, title, userid, content,
+		select num, title, userid, content, placeName, placeLa, placeMa,
 		to_char(writeday,'yyyy/MM/dd')
 		writeday,readCnt
 		from freeBoard

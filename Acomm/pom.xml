@@ -119,12 +119,11 @@
 		</dependency>
 
 		<!-- dependncy 추가 부분 -->
-		<!-- https://mvnrepository.com/artifact/com.jslsolucoes/ojdbc6 -->
 		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>oracle-xe</artifactId>
-			<version>1.11.2</version>
-		</dependency>
+            <groupId>com.jslsolucoes</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.1.0</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
