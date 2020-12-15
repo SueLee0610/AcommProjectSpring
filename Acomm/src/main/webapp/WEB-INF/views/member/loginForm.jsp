@@ -19,8 +19,8 @@
 			비밀번호:<input type="password" name="userPW" id="userPW"
 				class="form-control"><br> <input type="submit"
 				value="로그인" class="btn btn-primary btn-md text-white"> <br>
-			<a href="MemberIdSearchUIServlet">아이디찾기</a> / <a
-				href="MemberPwSearchUIServlet">비밀번호찾기</a>
+			<a href="idSearch">아이디찾기</a> 
+			<!-- <a href="MemberPwSearchUIServlet">비밀번호찾기</a>-->
 		</form>
 	</div>
 </div>

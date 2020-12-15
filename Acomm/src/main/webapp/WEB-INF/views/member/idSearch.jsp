@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		
-		<form action="MemberIdSearchServlet" method="get" class="p-5 bg-light">
+		<form action="idSearchMail" method="POST" class="p-5 bg-light">
 			이름 : <input type="text" name="userName" class="form-control"><br> 전화번호 : <input
 				type="text" name="phoneNum" class="form-control"><br> 이메일: <input
 				type="text" name="email1" class="form-control" required> @ <input type="text"
