@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -67,8 +68,8 @@ public class FreeBoardController {
 	}	
 	
 	//자세히 보기
-	@RequestMapping("/freeBoardRetrieve")//goodsRetrieve.jsp
-	@ModelAttribute("freeBoardRetrieve") //key값
+	@RequestMapping(value = {"/freeBoardRetrieve","/freeBoardUpdate"})//goodsRetrieve.jsp, freeBoardUpdate.jsp
+	@ModelAttribute("freeBoardDetail") //key값
 	public FreeBoardDTO retrieve(@RequestParam("num") int num) {
 		FreeBoardDTO result = service.selectByNum(num);
 		result = service.retrieve(num);
@@ -82,7 +83,7 @@ public class FreeBoardController {
 		return "redirect:../freeBoardList";
 	}
 	
-	//수정
+	//수정페이지에서 수정버튼을 눌렀을경우!
 	@RequestMapping(value = "/loginCheck/update")
 	public String update(FreeBoardDTO fDTO) {
 		service.update(fDTO);

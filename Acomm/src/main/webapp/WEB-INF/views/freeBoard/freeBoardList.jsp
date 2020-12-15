@@ -42,8 +42,8 @@
 		<c:forEach var="x" items="${selectFreeBoard}">
 		<tr>
 	 	  	<td><a href="freeBoardRetrieve?num=${x.num}">${x.num}</a></td>
-	 	  	<td>${x.title}</td>
-	 	  	<td>${x.content}</td>
+	 	  	<td><a href="freeBoardRetrieve?num=${x.num}">${x.title}</a></td>
+	 	  	<td><a href="freeBoardRetrieve?num=${x.num}">${x.content}</a></td>
 	 	  	<td style="text-align:center;">${x.userid}</td>
 	 	  	<td style="text-align:center;">${x.writeday}</td>
 	 	  	<td style="text-align:center;">${x.readCnt}</td>

@@ -38,6 +38,7 @@
   <!-- 상품게시판 -->
   <mvc:view-controller path="/freeBoardList" view-name="freeBoardList"/>
 	<mvc:view-controller path="/freeBoardWrite" view-name="freeBoardWrite"/>
+	<mvc:view-controller path="/freeBoardUpdate" view-name="freeBoardUpdate"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/" />

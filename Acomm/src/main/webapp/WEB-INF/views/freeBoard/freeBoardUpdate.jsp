@@ -3,16 +3,22 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>	
+<script type="text/javascript">
+	function updateBoard(e,f){
+		e.preventDefault();
+		f.action="loginCheck/update";
+		f.submit();
+	}
+</script>
 
 <div class="container">
 	<div class="row justify-content-center mb-5">
     	<div class="col-md-7 text-center">
-        	<h3 style="margin-top: 20px">게시글 보기</h3>
+        	<h3 style="margin-top: 20px">게시글 수정</h3>
         </div>
     </div>
 
-	<!-- <form name="myForm"> -->
-	<form action="" method="post">
+	<form name="myForm">
 		<input type="hidden" name="num" value="${freeBoardDetail.num}">
 		No. ${freeBoardDetail.num}
 
@@ -77,8 +83,9 @@
 					$('#content').attr('readonly', false);
 	  			});
 			</script>
-			<input type="button" value="수정" class="btn btn-secondary btn-md text-white" onclick="location.href='freeBoardUpdate?num=${freeBoardDetail.num }'">
-			<input type="button" value="삭제" class="btn btn-secondary btn-md text-white" onclick="location.href='loginCheck/delete?num=${freeBoardDetail.num }'">
+
+			<input type="submit" value="수정" class="btn btn-secondary btn-md text-white" onclick="updateBoard(event, myForm)">
+			<input type="button" value="목록" class="btn btn-secondary btn-md text-white" onclick="location.href='freeBoardList'">
 		</c:if>
 
 	</form>
