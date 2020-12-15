@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,9 +54,16 @@ public class FreeBoardService {
 		return result;
 	}
 
-	//게시글 등록
+	// 게시글 등록
 	public void insert(FreeBoardDTO fDTO) {
 		dao.insert(fDTO);
 	}
+	
+	// (마이페이지에서 사용하기위한)아이디로 게시글 찾기 
+	public List<FreeBoardDTO> selectMyFreeBoard(String userid){
+		List<FreeBoardDTO> result = dao.selectMyFreeBoard(userid);
+		return result;
+	}
+	
 
 }

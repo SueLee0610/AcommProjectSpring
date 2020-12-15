@@ -100,4 +100,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where num =#{num}
 	</update>
 	
+	<!-- (마이페이지에서 사용하기위한)아이디로 게시글 찾기  -->
+	<select id="selectMyFreeBoard" parameterType="String" resultType="FreeBoardDTO">
+		select num, title, content, to_char(writeday,'yyyy/MM/dd')
+		writeday
+		from freeBoard
+		where userid= #{userid} 
+	</select>
 </mapper>

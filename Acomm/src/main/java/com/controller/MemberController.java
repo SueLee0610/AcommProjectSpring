@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.FreeBoardDTO;
 import com.dto.MemberDTO;
 import com.dto.ProductDTO;
+import com.service.FreeBoardService;
 import com.service.MemberService;
 import com.service.ProductService;
 
@@ -27,6 +29,9 @@ public class MemberController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	FreeBoardService freeBoardService;
 
 	@RequestMapping(value = "/memberAdd")
 	public String memberAdd(MemberDTO member, Model model) { 
@@ -71,10 +76,14 @@ public class MemberController {
 		// 회원이 판매중인 상품정보 가져오기
 		List<ProductDTO> myProduct = productService.selectMyProduct(userid);
 		
+		// 회원이 작성한 자유게시판 게시글 가져오기 
+		List<FreeBoardDTO> myFreeBoard = freeBoardService.selectMyFreeBoard(userid);
+		
 		// 데이터 전송 
 		session.setAttribute("login", member);
 		redirectA.addFlashAttribute("cName", cName);
 		redirectA.addFlashAttribute("myProduct", myProduct);
+		redirectA.addFlashAttribute("myFreeBoard", myFreeBoard);
 		
 		return "redirect:../myPage";
 	}

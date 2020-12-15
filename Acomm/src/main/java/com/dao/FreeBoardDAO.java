@@ -85,5 +85,11 @@ public class FreeBoardDAO {
 		int result = template.insert("FreeBoardMapper.insert", fDTO);
 		return result;
 	}
+	
+	// (마이페이지에서 사용하기위한)아이디로 게시글 찾기 
+	public List<FreeBoardDTO> selectMyFreeBoard(String userid){
+		List<FreeBoardDTO> result = template.selectList("FreeBoardMapper.selectMyFreeBoard",userid);
+		return result;
+	}
 
 }
