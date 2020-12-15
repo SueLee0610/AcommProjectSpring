@@ -1,40 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <link rel="stylesheet" href="css/map.css">	
 
-<div class="container">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>	
+<script type="text/javascript">
+	function updateBoard(e,f){
+		e.preventDefault();
+		f.action="loginCheck/update";
+		f.submit();
+	}
+</script>
 
+<div class="container">
 	<div class="row justify-content-center mb-5">
-	   <div class="col-md-7 text-center">
-	     <h3 style="margin-top: 20px">게시글 작성</h3>
-	  </div>
-	</div>
-      
-	<form action="loginCheck/insert" method="post">
+    	<div class="col-md-7 text-center">
+        	<h3 style="margin-top: 20px">게시글 수정</h3>
+        </div>
+    </div>
+
+	<form name="myForm">
+		<input type="hidden" name="num" value="${freeBoardDetail.num}">
+		No. ${freeBoardDetail.num}
+
+		<div class="row form-group">
+			<div class="col-md-6 mb-3 mb-md-0">
+				<label class="text-black" for="author">작성자</label>
+				<input type="text" name="author" id="author" class="form-control" value="${freeBoardDetail.userid}" readonly>
+			</div>
+			<div class="col-md-6">
+				<label class="text-black" for="writeday">작성일</label>
+				<input type="text" name="writeday" id="writeday" class="form-control" value="${freeBoardDetail.writeday}" readonly>
+			</div>
+		</div>
+
 		<div class="row form-group">
 			<div class="col-md-12">
 				<label class="text-black" for="title">제목</label>
-				<input type="text" name="title" id="title" class="form-control" required>
-			</div>
-		</div>     
-		
-		<div class="row form-group">
-			<div class="col-md-12">
-				<label class="text-black" for="userid">작성자</label>
-				<input type="text" name="userid" id="userid" class="form-control" value="${login}" readonly>
+				<input type="text" name="title" id="title" class="form-control" value="${freeBoardDetail.title}" readonly>
 			</div>
 		</div>
-		
+
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		
 		    <div id="menu_wrap" class="bg_white">
 		        <div class="option">
 		            <div>
+		            	<!-- 저장된 지도 정보가 있을 경우 지도 영역을 표시한다 -->
+						<c:if test="${freeBoardDetail.placeName != null}">
+		                <div onclick="searchPlaces(); return false;">
+		                   	 키워드 : <input type="text" value="${freeBoardDetail.placeName}" id="keyword" size="15"> 
+		                    <button type="button" onclick="searchPlaces(); return false;">검색하기</button> 
+		                </div>
+		                </c:if>
+		            	<!-- 저장된 지도 정보가 있을 경우 지도 영역을 표시한다 -->
+						<c:if test="${freeBoardDetail.placeName == null}">
 		                <div onclick="searchPlaces(); return false;">
 		                   	 키워드 : <input type="text" value="에이콘아카데미 강남점" id="keyword" size="15"> 
 		                    <button type="button" onclick="searchPlaces(); return false;">검색하기</button> 
 		                </div>
+		                </c:if>		                
 		            </div>
 		        </div>
 		        <hr>
@@ -45,24 +72,33 @@
 		
 		<br>
 		<label class="text-black" for="">선택한 장소</label>	
-		<input id="placeName" name="placeName" class="form-control" type="text" value="">
-		<input id="placeLa" name="placeLa" class="form-control" type="hidden" value="" style="width: 50%; float: left"><input id="placeMa" name="placeMa" class="form-control" type="hidden" value="" style="width: 50%">
+		<input id="placeName" name="placeName" class="form-control" type="text" value="${freeBoardDetail.placeName}">
+		<input id="placeLa" name="placeLa" class="form-control" type="hidden" value="${freeBoardDetail.placeLa}" style="width: 50%; float: left"><input id="placeMa" name="placeMa" class="form-control" type="hidden" value="${freeBoardDetail.placeMa}" style="width: 50%">
 		<br>
-	
+
 		<div class="row form-group">
 			<div class="col-md-12">
 				<label class="text-black" for="content">내용</label>
-				<textarea name="content" id="content" cols="30" rows="7" class="form-control" style="padding:20px" required></textarea>
+				<textarea name="content" id="content" cols="30" rows="7" class="form-control" style="padding:20px" readonly>${freeBoardDetail.content}</textarea>
 			</div>
 		</div>
-		
-         <div class="row form-group">
-         	<div class="col-md-12">
-             	<input type="submit" value="저장" class="btn btn-secondary btn-md text-white">
-             </div>
-         </div>
-	</form>
 
+		<c:if test="${login.userID eq freeBoardDetail.userid}">
+			<!-- 수정 가능하도록 활성화  -->
+			<script>
+				$(document).ready(function() {
+					//attr을 이용하여 속성값 변경하기
+					$('#title').attr('readonly', false); //readonly을 비활성화 (읽고 쓰기 가능)
+					$('#content').attr('readonly', false);
+	  			});
+			</script>
+
+			<input type="submit" value="수정" class="btn btn-secondary btn-md text-white" onclick="updateBoard(event, myForm)">
+			<input type="button" value="목록" class="btn btn-secondary btn-md text-white" onclick="location.href='freeBoardList'">
+		</c:if>
+
+	</form>
+	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64efe24df194e972fb4e28fe4f02b556&libraries=services"></script>
 	<script>
 	// 키워드 검색창에서 엔터 칠 경우 페이지 이동 방지
@@ -254,5 +290,5 @@
 	    }
 	}					
 	</script>
-
+	
 </div>
