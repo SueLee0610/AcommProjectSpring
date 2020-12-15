@@ -34,8 +34,8 @@
 				type="text" id="age" name="age" value="${login.age}"
 				class="form-control"><br> 연락처: <input id="phoneNum"
 				name="phoneNum" type="text" maxlength="11" value="${login.phoneNum}"
-				class="form-control"> * ( - ) 없이 입력하세요. <br>
-			<br> 이메일: <input id="email1" name="email1" type="text"
+				class="form-control"> * ( - ) 없이 입력하세요. <br> <br>
+			이메일: <input id="email1" name="email1" type="text"
 				value="${login.email1}" class="form-control">@ <input
 				id="email2" name="email2" type="text" placeholder="직접입력"
 				value="${login.email2}" class="form-control"> <select
@@ -43,9 +43,8 @@
 				<option value="naver.com">naver.com</option>
 				<option value="daum.com">daum.com</option>
 				<option value="gmail.com">gmail.com</option>
-			</select><br>
-			<br> 수강과목: ${cName}<br>
-			<br> 강의 별점: ${login.cScore}
+			</select><br> <br> 수강과목: ${cName}<br> <br> 강의 별점:
+			${login.cScore}
 
 			<!-- 회원이 판매중인 상품 list 가져오기 -->
 			<c:if test="${!empty myProduct }">
@@ -67,8 +66,7 @@
 
 						<c:forEach var="product" items="${myProduct }">
 							<tr>
-								<td><a
-									href="productRetrieve?pCode=${product.pCode}">${product.pCode}${product.pName}</a></td>
+								<td><a href="productRetrieve?pCode=${product.pCode}">${product.pCode}${product.pName}</a></td>
 								<td>${product.pPrice}원</td>
 								<td>${product.isSold}</td>
 							<tr>
@@ -76,12 +74,40 @@
 					</tbody>
 				</table>
 			</c:if>
-			<br> <input type="submit" value="수정"
-				class="btn btn-primary btn-md text-white"> <input
-				type="button" value="Home" onClick="location.href='main'"
-				class="btn btn-primary btn-md text-white">
+			<!-- 회원이 작성한 자유게시판 list 가져오기 -->
+			<c:if test="${!empty myFreeBoard }">
+				<br>
+				<br>
+				자유게시판 게시글 
+			<table class="table table-striped">
+					<thead>
+						<tr>
+							<td>제목</td>
+							<td>내용</td>
+							<td>작성일</td>
+						</tr>
+					</thead>
+					<tbody>
 
-		</form>
+						<c:forEach var="freeBoard" items="${myFreeBoard }">
+							<tr>
+								<td><a href="freeBoardRetrieve?num=${freeBoard.num}">${freeBoard.title}</a></td>
+								<td><a href="freeBoardRetrieve?num=${freeBoard.num}">${freeBoard.content}</a></td>
+								<td>${freeBoard.writeday}</td>
+								<tr>
+						
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
+			<br>
+								<input type="submit" value="수정"
+									class="btn btn-primary btn-md text-white"> <input
+									type="button" value="Home" onClick="location.href='main'"
+									class="btn btn-primary btn-md text-white">
+
+		
+							</form>
 
 	</div>
 </div>
