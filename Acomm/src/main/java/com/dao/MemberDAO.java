@@ -47,4 +47,9 @@ public class MemberDAO {
 		int result = template.update("MemberMapper.updateCcode", dto);
 		return result;
 	}
+
+	public String idSearch(MemberDTO dto) {
+		String result = template.selectOne("MemberMapper.idSearch", dto);
+		return result;
+	}
 }

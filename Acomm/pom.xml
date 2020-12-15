@@ -214,7 +214,20 @@
 			<artifactId>spring-websocket</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-	
+		
+		<!-- 메일 관련 디펜던시 -->
+		<dependency> 
+			<groupId>org.springframework</groupId> 
+			<artifactId>spring-context-support</artifactId> 
+			<version>${org.springframework-version}</version> 
+		</dependency>
+		
+		<dependency> 
+			<groupId>javax.mail</groupId> 
+			<artifactId>mail</artifactId> 
+			<version>1.4.7</version> 
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

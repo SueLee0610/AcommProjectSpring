@@ -47,4 +47,9 @@ public class MemberService {
 		int result =  dao.updateCcode(dto);
 		return result;
 	}
+
+	public String idSearch(MemberDTO dto) {
+		String result = dao.idSearch(dto);
+		return result;
+	}
 }

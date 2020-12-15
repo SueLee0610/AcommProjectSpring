@@ -36,7 +36,12 @@ public class MemberController {
 		model.addAttribute("success", "회원가입 성공");
 		return "main";
 	}
-
+	
+	@RequestMapping(value = "/idSearch")
+	public String idSearch() { 
+		return "idSearch";
+	}
+	
 	// AJAX 아이디 중복 체크
 	@RequestMapping(value = "/idDuplicateCheck", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
