@@ -34,6 +34,9 @@
 			</div>
 		</div>
 
+		<!-- 저장된 지도 정보가 있을 경우 지도 영역을 표시한다 -->
+		<c:if test="${freeBoardDetail.placeName != null}">
+
 		<!-- 이미지 지도를 표시할 div 입니다 -->
 		<div id="staticMap" style="width:100%;height:350px;"></div>    
 		
@@ -59,7 +62,12 @@
 		// 이미지 지도를 생성합니다
 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 		</script>
+		<input type="hidden" id="placeName" value="${freeBoardDetail.placeName}">
+		<input type="hidden" id="placeLa" value="${freeBoardDetail.placeLa}">
+		<input type="hidden" id="placeMa" value="${freeBoardDetail.placeMa}">
 		<br>
+
+		</c:if>
 
 		<div class="row form-group">
 			<div class="col-md-12">

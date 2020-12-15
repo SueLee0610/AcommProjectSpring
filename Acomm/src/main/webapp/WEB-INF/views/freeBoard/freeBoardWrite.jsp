@@ -2,66 +2,66 @@
 
 <link rel="stylesheet" href="css/map.css">	
 
-	<div class="container">
-	
-		<div class="row justify-content-center mb-5">
-		   <div class="col-md-7 text-center">
-		     <h3 style="margin-top: 20px">게시글 작성</h3>
-		  </div>
-		</div>
-       
-        <form action="loginCheck/insert" method="post">
-			<div class="row form-group">
-				<div class="col-md-12">
-					<label class="text-black" for="title">제목</label>
-					<input type="text" name="title" id="title" class="form-control" required>
-				</div>
-			</div>     
-			
-			<div class="row form-group">
-				<div class="col-md-12">
-					<label class="text-black" for="userid">작성자</label>
-					<input type="text" name="userid" id="userid" class="form-control" value="${login}" readonly>
-				</div>
+<div class="container">
+
+	<div class="row justify-content-center mb-5">
+	   <div class="col-md-7 text-center">
+	     <h3 style="margin-top: 20px">게시글 작성</h3>
+	  </div>
+	</div>
+      
+	<form action="loginCheck/insert" method="post">
+		<div class="row form-group">
+			<div class="col-md-12">
+				<label class="text-black" for="title">제목</label>
+				<input type="text" name="title" id="title" class="form-control" required>
 			</div>
-			
-			<div class="map_wrap">
-			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-			
-			    <div id="menu_wrap" class="bg_white">
-			        <div class="option">
-			            <div>
-			                <div onclick="searchPlaces(); return false;">
-			                   	 키워드 : <input type="text" value="에이콘아카데미 강남점" id="keyword" size="15"> 
-			                    <button type="button" onclick="searchPlaces(); return false;">검색하기</button> 
-			                </div>
-			            </div>
-			        </div>
-			        <hr>
-			        <ul id="placesList"></ul>
-			        <div id="pagination"></div>
-			    </div>
-			</div>
-			
-			<br>
-			<label class="text-black" for="">선택한 장소</label>	
-			<input id="placeName" name="placeName" class="form-control" type="text" value="" required>
-			<input id="placeLa" name="placeLa" class="form-control" type="hidden" value="" style="width: 50%; float: left"><input id="placeMa" name="placeMa" class="form-control" type="hidden" value="" style="width: 50%">
-			<br>
+		</div>     
 		
-			<div class="row form-group">
-				<div class="col-md-12">
-					<label class="text-black" for="content">내용</label>
-					<textarea name="content" id="content" cols="30" rows="7" class="form-control" style="padding:20px" required></textarea>
-				</div>
+		<div class="row form-group">
+			<div class="col-md-12">
+				<label class="text-black" for="userid">작성자</label>
+				<input type="text" name="userid" id="userid" class="form-control" value="${login}" readonly>
 			</div>
-			
-           <div class="row form-group">
-           	<div class="col-md-12">
-               	<input type="submit" value="저장" class="btn btn-secondary btn-md text-white">
-               </div>
-           </div>
-		</form>
+		</div>
+		
+		<div class="map_wrap">
+		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		
+		    <div id="menu_wrap" class="bg_white">
+		        <div class="option">
+		            <div>
+		                <div onclick="searchPlaces(); return false;">
+		                   	 키워드 : <input type="text" value="에이콘아카데미 강남점" id="keyword" size="15"> 
+		                    <button type="button" onclick="searchPlaces(); return false;">검색하기</button> 
+		                </div>
+		            </div>
+		        </div>
+		        <hr>
+		        <ul id="placesList"></ul>
+		        <div id="pagination"></div>
+		    </div>
+		</div>
+		
+		<br>
+		<label class="text-black" for="">선택한 장소</label>	
+		<input id="placeName" name="placeName" class="form-control" type="text" value="">
+		<input id="placeLa" name="placeLa" class="form-control" type="hidden" value="" style="width: 50%; float: left"><input id="placeMa" name="placeMa" class="form-control" type="hidden" value="" style="width: 50%">
+		<br>
+	
+		<div class="row form-group">
+			<div class="col-md-12">
+				<label class="text-black" for="content">내용</label>
+				<textarea name="content" id="content" cols="30" rows="7" class="form-control" style="padding:20px" required></textarea>
+			</div>
+		</div>
+		
+         <div class="row form-group">
+         	<div class="col-md-12">
+             	<input type="submit" value="저장" class="btn btn-secondary btn-md text-white">
+             </div>
+         </div>
+	</form>
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64efe24df194e972fb4e28fe4f02b556&libraries=services"></script>
 	<script>
