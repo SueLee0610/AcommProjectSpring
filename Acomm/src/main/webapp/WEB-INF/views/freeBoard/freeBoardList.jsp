@@ -15,7 +15,7 @@
          <h3 style="margin-top: 20px">자유게시판</h3>
        </div>
      </div>
-     
+    
 	<table>
 		<tr>
 			<td class="a2" colspan="6">
