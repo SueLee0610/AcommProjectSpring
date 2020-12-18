@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $( () => {
 	// submit 버튼의 글자가 [판매완료]라면 폼은 isSold 상태를 업뎃하는 서블릿으로 이동 
@@ -11,6 +10,19 @@ $( () => {
 		$("form").attr("action", "loginCheck/productIsSoldUpdate");
 	}else{
 		$("form").attr("action", "");
+	}
+	
+	// 상품게시물 수정 후 모달창 띄워주기
+	var result = '<c:out value="${result}" />';
+	checkModal(result);
+	
+	function checkModal (result) {
+		if(result == ''){
+			return;
+		}else{
+			$(".modal-body").html(result);
+			$("#myModal").modal("show");
+		}
 	}
 });
 </script>
@@ -48,4 +60,23 @@ $( () => {
 	</div>
 </form>
 </div>
+</div>
+
+<!-- 모달창 -->
+<div class="modal fade" id="myModal" role="dialog"
+	style="z-index: 100000">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<div class="modal-body">
+				<p>message</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
