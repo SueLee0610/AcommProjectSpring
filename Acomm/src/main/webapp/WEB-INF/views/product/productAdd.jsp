@@ -71,7 +71,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <input type="submit" value="등록하기" class="btn btn-primary btn-md text-white">
-                  <button value="등록하기" class="btn btn-secondary btn-md text-white" onclick="location.href='ProductBoardServlet'">상품목록</button>
+                  <button value="등록하기" class="btn btn-secondary btn-md text-white" onclick="location.href='productBoard'">상품목록</button>
                 </div>
               </div>
 </form>
