@@ -19,16 +19,16 @@ $(document).on("click", ".replyAdd", event => {
 			newReply += `<div style="margin-top: 5px;" id="reply${data.reNO}" margin-left: "${data.reDepth}*20"px; display: inline-block">`;
 			newReply += `<div id="reWriter${data.reNO}"> 작성자: ${reWriter}</div>`;
 			newReply += `<div id="reContent${data.reNO}"> 내용: ${reContent}</div>`;
-			newReply += `<button type="button" class="replyDelete btn" id="${data.reNO}">삭제</button> &nbsp;`;
-			newReply += `<button type="button" class="replyUpdateForm btn" id="${data.reNO}">수정</button> &nbsp;`;
-			newReply += `<button type="button" class="reReplyAddForm btn" id=${data.reNO}">댓글</button>`;
+			newReply += `<button type="button" class="replyDelete newBtn btn" id="${data.reNO}">삭제</button> &nbsp;`;
+			newReply += `<button type="button" class="replyUpdateForm newBtn btn" id="${data.reNO}">수정</button> &nbsp;`;
+			newReply += `<button type="button" class="reReplyAddForm newBtn btn" id=${data.reNO}">댓글</button>`;
 			newReply += `</div>`;
 
 			newReply += `<div id="reReply${data.reNO}" style="margin-top: 10px; display: none" class=${data.reNO}>`;
 			newReply += `작성자: <input type="text" id="reReWriter${data.reNO}" size="20" maxlength="20" required><br />`;
 			newReply += `<textarea id="reReContent${data.reNO}" rows="3" cols="60" maxlength="500" placeholder="내용을 작성해주세요." class="form-control" required></textarea>`;
-			newReply += `<button type="button" class="reReplyAdd btn" id="${data.reNO}">작성</button> &nbsp;`;
-			newReply += `<button type="button" class="reReplyHide btn" id="${data.reNO}">취소</button>`;
+			newReply += `<button type="button" class="reReplyAdd newBtn btn" id="${data.reNO}">작성</button> &nbsp;`;
+			newReply += `<button type="button" class="reReplyHide newBtn btn" id="${data.reNO}">취소</button>`;
 			newReply += `</div>`;
 			
 			// body의 마지막 div에 append
@@ -37,6 +37,9 @@ $(document).on("click", ".replyAdd", event => {
 			// 작성자 정보 디폴트로 설정, 작성 내용 초기화
 			$("#reWriter").val(reWriter);
 			$("#reContent").val('');
+			
+			$(".modal-body").html('댓글이 작성되었습니다.');
+			$("#myModal").modal("show");
 		},
 		error: function(xhr, status, responseData) {
 			console.log("error");
@@ -68,7 +71,9 @@ $(document).on("click", ".replyDelete", event => {
 			reNO: reNO
 		},
 		success: function(data) {
-			console.log('delete 성공 데이터: ' + data);
+			$(".modal-body").html('댓글이 삭제되었습니다.');
+			$("#myModal").modal("show");
+			
 			reply.style.display = "none";
 		},
 		error: function(xhr, status, responseData) {
@@ -93,8 +98,8 @@ $(document).on("click", ".replyUpdateForm", event => {
 		newReply += `<div id="reReply${reNO}" margin-left: "25px"; style="margin-top: 25px;" class=${reNO}>`;
 		newReply += `작성자: <input type="text" id="reReWriter${reNO}" size="20" maxlength="20" class="form-control" required>`;
 		newReply += `<textarea id="reReContent${reNO}" rows="3" cols="60" maxlength="500" placeholder="내용을 작성해주세요." class="form-control" required></textarea>`;
-		newReply += `<button type="button" class="reReplyUpdate btn" id="${reNO}">수정</button> &nbsp;`;
-		newReply += `<button type="button" class="reReplyHide btn" id="${reNO}">취소</button>`;
+		newReply += `<button type="button" class="reReplyUpdate newBtn btn" id="${reNO}">수정</button> &nbsp;`;
+		newReply += `<button type="button" class="reReplyHide newBtn btn" id="${reNO}">취소</button>`;
 		newReply += `</div>`;
 		$(reply).append(newReply);
 	} else {
@@ -153,10 +158,13 @@ $(document).on("click", ".reReplyAdd", event => {
 			newReply += `<div style="margin-left: ${reDepth}px; margin-top: 25px;" id="reply${data.reNO}" margin-left: "${reDepth}px"; display: inline-block" class=${reParent}>`;
 			newReply += `<div id="reWriter${data.reNO}"> 작성자: ${reWriter}</div>`;
 			newReply += `<div id="reContent${data.reNO}"> 내용: ${reContent}</div>`;
-			newReply += `<button type="button" class="replyDelete btn" id="${data.reNO}">삭제</button> &nbsp;`;
-			newReply += `<button type="button" class="replyUpdateForm btn" id="${data.reNO}">수정</button> &nbsp;`;
+			newReply += `<button type="button" class="replyDelete newBtn btn" id="${data.reNO}">삭제</button> &nbsp;`;
+			newReply += `<button type="button" class="replyUpdateForm newBtn btn" id="${data.reNO}">수정</button> &nbsp;`;
 			newReply += `</div>`;
-
+			
+			$(".modal-body").html('댓글이 작성되었습니다.');
+			$("#myModal").modal("show");
+			
 			var replyDia = document.getElementById("reReply" + reParent);
 			var classreParent = '.' + reParent + ":last";
 
@@ -195,6 +203,10 @@ $(document).on("click", '.reReplyUpdate', event => {
 			reContent: reContent
 		},
 		success: function(data) {
+			
+			$(".modal-body").html('댓글이 수정되었습니다.');
+			$("#myModal").modal("show");
+			
 			$(reContentString).text('내용: ' + reContent);
 			replyDia.style.display = "none";
 			$(content).val(reContent);

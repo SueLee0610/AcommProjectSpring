@@ -4,11 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/courseReplyJS.js"></script>
 
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/courseRetrieve.css">
 
 <div class="cRetrieveContainer">
@@ -42,7 +39,7 @@
 					<c:if test="${courseDTO.cStudNum > currentStudNum}">
 						<c:if test="${0 eq login.cCode }">
 
-							<input type="submit" class="btn btn-info" value="신청하기">
+							<input type="submit" class="newBtn btn btn-info" value="신청하기">
 
 						</c:if>
 					</c:if>
@@ -52,6 +49,25 @@
 	</form>
 </div>
 <br>
+
+<!-- 모달창 -->
+	<div class="modal fade" id="myModal" role="dialog" style="z-index:100000">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<p>message</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 <div class="cReplyContainer">
 	<div class="row">
 		<div class="col-md-12 blog-content">
@@ -72,7 +88,7 @@
 			<textarea id="reContent" rows="3" cols="60" maxlength="500"
 				placeholder="댓글을 달아주세요." class="form-control" required></textarea>
 			<button type="button"
-				class="replyAdd btn btn-primary float-right mt-2 text-white"
+				class="replyAdd newBtn btn btn-primary float-right mt-2 text-white"
 				id="replyAdd">작성</button>
 			<br>
 			<c:forEach var="reply" items="${replyList }">
@@ -84,16 +100,16 @@
 					<div id="reContent${reply.reNO}">내용:${reply.reContent}</div>
 					<c:if test="${reply.reWriter eq  login.userID}">
 						<c:if test="${'Y' eq  reply.reDeleteFlag}">
-							<button type="button" class="replyDelete btn" id="${reply.reNO}">삭제</button>
+							<button type="button" class="replyDelete newBtn btn" id="${reply.reNO}">삭제</button>
 	&nbsp;
 	</c:if>
-						<button type="button" class="replyUpdateForm btn"
+						<button type="button" class="replyUpdateForm newBtn btn"
 							id="${reply.reNO}">수정</button>
 	&nbsp;
 
 	</c:if>
 					<c:if test="${ 0 eq reply.reDepth }">
-						<button type="button" class="reReplyAddForm btn"
+						<button type="button" class="reReplyAddForm newBtn btn"
 							id="${reply.reNO}">댓글</button>
 					</c:if>
 				</div>
@@ -116,10 +132,11 @@
 					<textarea id="reReContent${reply.reNO}" rows="3" cols="60"
 						maxlength="500" placeholder="내용을 작성해주세요." class="form-control"
 						required></textarea>
-					<button type="button" class="reReplyAdd btn" id="${reply.reNO}">작성</button>
-					<button type="button" class="reReplyHide btn" id="${reply.reNO}">취소</button>
+					<button type="button" class="reReplyAdd newBtn btn" id="${reply.reNO}">작성</button>
+					<button type="button" class="reReplyHide newBtn btn" id="${reply.reNO}">취소</button>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
 </div>
+
