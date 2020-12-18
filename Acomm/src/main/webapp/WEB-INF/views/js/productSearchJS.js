@@ -27,8 +27,10 @@ $(() => {
 								str += '<a href="productRetrieve?pCode=' + value[i].pCode + '" class="text-dark">';
 								str += value[i].pName + '</a></h5><p class="card-text text-body">';
 								str += '가격: ' + value[i].pPrice + '원<br>';
-								str += '팔렸습니까: ' + value[i].isSold + '<br></p><p class="card-text">';
-								str += '<a href="productRetrieve?pCode=' + value[i].pCode + '" class="text-info">상세보기</a></p></div></div></div>';
+								str += '판매자: ' + value[i].userid + '<br>';
+								str += value[i].pContent.substring(0, 18) +'...<br>';
+								str += value[i].isSold == 'y' ? '<span class="card-text text-danger"><b>Sold Out</b></span></p>' : '</p>';
+								str += '<p class="card-text"><a href="productRetrieve?pCode=' + value[i].pCode + '" class="text-info">상세보기</a></p></div></div></div>';
 								$(".newProduct").append(str);
 						}
 					})

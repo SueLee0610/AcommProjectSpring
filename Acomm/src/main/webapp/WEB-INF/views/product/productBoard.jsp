@@ -69,7 +69,12 @@ $(() => {
 					<h5 class="card-title font-size-regular pName">
 						<a href="productRetrieve?pCode=${productList.pCode}" class="text-dark">${productList.pName}</a>
 					</h5>
-					<p class="card-text text-body">가격: ${productList.pPrice}원<br>팔렸습니까: ${productList.isSold}<br></p>
+					<p class="card-text text-body">
+					가격: ${productList.pPrice}원<br>
+					판매자: ${productList.userid}<br>
+					<c:out value="${fn:substring(productList.pContent, 0, 18)}" />...<br>
+					<c:if test="${productList.isSold=='y'}"><span class="card-text text-danger"><b>Sold Out</b></span></c:if>
+					</p>
 					<p class="card-text "><a href="productRetrieve?pCode=${productList.pCode}" class="text-info">상세보기</a></p>
 					</div>
 				</div>
