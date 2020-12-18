@@ -3,9 +3,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="js/bootstrap.min.js">
 <link rel="stylesheet" href="css/freeBoardList.css">
+<link rel="stylesheet" href="css/main.css">
 
 <div class="container">
 
@@ -76,4 +77,43 @@
 		</tr>
 		
 	</table>
+	
+	<!-- 모달창 -->
+    <div class="modal fade" id="myModal" role="dialog" style="z-index:100000 ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>message</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script type="text/javascript">
+	$(() => {
+		var result = '<c:out value="${result}" />';
+		checkModal(result);
+	
+		history.replaceState({}, null, null);
+		
+		function checkModal(result) {
+	    if(result === '' || history.state){
+				return;
+			}else{
+				// 모달창에 들어갈 메세지
+				$(".modal-body").html(result);
+				// 모달창 띄워주기
+				$("#myModal").modal("show");
+			}
+		}
+	})
+	</script>
+	
 </div>
