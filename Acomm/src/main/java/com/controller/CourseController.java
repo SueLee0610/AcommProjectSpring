@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.CourseDTO;
 import com.dto.MemberDTO;
@@ -230,7 +231,7 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value = "loginCheck/CourseOrderDone")
-	public String courseOrderDone(@RequestParam String payMethod, HttpSession session) {
+	public String courseOrderDone(@RequestParam String payMethod, HttpSession session, RedirectAttributes rttr) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		CourseDTO courseDTO = (CourseDTO) session.getAttribute("courseDTO");
 		String cName = courseDTO.getcName();
@@ -255,6 +256,9 @@ public class CourseController {
 		
 		// 회원 cCode 정보 update
 		memberService.updateCcode(oDTO);
+		
+		// 모달창 메세지 전달
+		rttr.addFlashAttribute("result", "[" + cName + "] 수강신청이 완료되었습니다.");
 		
 		return  "redirect:../main";
 	}
