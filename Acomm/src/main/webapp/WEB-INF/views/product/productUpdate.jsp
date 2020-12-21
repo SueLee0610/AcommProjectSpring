@@ -32,7 +32,6 @@
 					<label class="text-black" for="fname">판매자 ID</label>
 					<input type="text" id="fname" class="form-control" name="userID" value="${productRetrieve.userid}" readonly>
 				</div>
-				
 			</div>
 			<div class="row form-group">
                 <div class="col-md-12">
@@ -55,7 +54,6 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <input type="submit" value="수정하기" class="btn btn-primary btn-md text-white">
-                  <button value="등록하기" class="btn btn-secondary btn-md text-white" onclick="location.href='productBoard'">상품목록</button>
                 </div>
               </div>
 </form>

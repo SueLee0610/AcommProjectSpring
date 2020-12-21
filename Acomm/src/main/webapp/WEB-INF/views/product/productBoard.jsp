@@ -3,8 +3,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/productSearchJS.js"></script>
+<script type="text/javascript">
+$(() => {
+	// 모달창 띄워주기
+	var result = '<c:out value="${result}" />';
+	checkModal(result);
+	
+	history.replaceState({}, null, null);
+	
+	function checkModal (result) {
+		if(result == '' || history.state){
+			return;
+		}else{
+			/* $(".modal-body").html("[" + result + "] 상품이 등록되었습니다."); */
+			$(".modal-body").html(result);
+			$("#myModal").modal("show");
+		}
+	}
+})
+</script>
 
 <div class="pContainer">
 	<!-- 타이틀 -->
@@ -51,7 +69,12 @@
 					<h5 class="card-title font-size-regular pName">
 						<a href="productRetrieve?pCode=${productList.pCode}" class="text-dark">${productList.pName}</a>
 					</h5>
-					<p class="card-text text-body">가격: ${productList.pPrice}원<br>팔렸습니까: ${productList.isSold}<br></p>
+					<p class="card-text text-body">
+					가격: ${productList.pPrice}원<br>
+					판매자: ${productList.userid}<br>
+					<c:out value="${fn:substring(productList.pContent, 0, 18)}" />...<br>
+					<c:if test="${productList.isSold=='y'}"><span class="card-text text-danger"><b>Sold Out</b></span></c:if>
+					</p>
 					<p class="card-text "><a href="productRetrieve?pCode=${productList.pCode}" class="text-info">상세보기</a></p>
 					</div>
 				</div>
@@ -60,4 +83,22 @@
 		</div>
 	</div>
 	</section>
+</div>
+
+<!-- 모달창 -->
+<div class="modal fade" id="myModal" role="dialog" style="z-index: 100000">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<div class="modal-body">
+				<p>message</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>

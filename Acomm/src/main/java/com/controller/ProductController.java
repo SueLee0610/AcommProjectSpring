@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
 import com.dto.ProductDTO;
@@ -60,15 +61,17 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/loginCheck/productIsSoldUpdate")
-	public String productIsSoldUpdate(@RequestParam("pCode") int pCode) {
+	public String productIsSoldUpdate(@RequestParam("pCode") int pCode, RedirectAttributes rttr) {
 		service.isSoldUpdate(pCode);
+		rttr.addFlashAttribute("result", "상품이 [판매완료] 처리되었습니다.");
 		return "redirect:../productBoard";
 	}
 	
 	@RequestMapping(value = "/loginCheck/productAdd", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
 	public String productAdd(HttpServletRequest request, @RequestParam("pImage") MultipartFile file,
 			@RequestParam("userID")String userID, @RequestParam("pName")String pName, 
-			@RequestParam("pPrice")int pPrice, @RequestParam("pContent")String pContent) throws Exception {
+			@RequestParam("pPrice")int pPrice, @RequestParam("pContent")String pContent,
+			RedirectAttributes rttr) throws Exception {
 		String imageName = Paths.get(file.getOriginalFilename()).getFileName().toString();
 		InputStream imageStream = file.getInputStream();
 
@@ -90,6 +93,7 @@ public class ProductController {
 		String pImage = imageName;
 		ProductDTO pdto = new ProductDTO(0, null, userID, pPrice, pName, pContent, pImage);
 		service.addProduct(pdto);
+		rttr.addFlashAttribute("result", pdto.getpName() + "상품이 등록되었습니다.");
 		
 		// 스트림 닫기
 		imageStream.close();
@@ -102,14 +106,16 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/loginCheck/productUpdate", method = RequestMethod.POST)
-	public String productUpdate(@ModelAttribute ProductDTO pdto) {
+	public String productUpdate(@ModelAttribute ProductDTO pdto, RedirectAttributes rttr) {
 		service.productUpdate(pdto);
+		rttr.addFlashAttribute("result", "게시글이 수정되었습니다.");
 		return "redirect:../productRetrieve?pCode="+pdto.getpCode();
 	}
 	
 	@RequestMapping(value = "/loginCheck/productDelete")
-	public String productUpdate(@RequestParam int pCode) {
+	public String productUpdate(@RequestParam int pCode, RedirectAttributes rttr) {
 		service.deleteProduct(pCode);
+		rttr.addFlashAttribute("result", "상품이 삭제되었습니다.");
 		return "redirect:../productBoard";
 	}
 	
