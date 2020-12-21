@@ -2,15 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<link rel="stylesheet" href="fonts/icomoon/style.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/myPage.css">
-
-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <script type="text/javascript" src="js/memberFormJS.js"></script>
-
-
+<script  type="text/javascript">
+//모달창 
+$(() => {// 모달창 띄워주기
+	var result = '<c:out value="${result}" />';
+	checkModal(result);
+	history.replaceState({}, null, null);
+	
+	function checkModal(result) {
+		if(result == '' || history.state){
+			return;
+		}else{
+			$(".modal-body").html(result);
+			$("#myModal").modal("show");
+		}
+	}
+})
+</script>
 <div class="containerMember">
 	<div class="innerContainer">
 		<div class="row mb-5">
@@ -94,20 +105,34 @@
 								<td><a href="freeBoardRetrieve?num=${freeBoard.num}">${freeBoard.title}</a></td>
 								<td><a href="freeBoardRetrieve?num=${freeBoard.num}">${freeBoard.content}</a></td>
 								<td>${freeBoard.writeday}</td>
-								<tr>
-						
+							<tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</c:if>
-			<br>
-								<input type="submit" value="수정"
-									class="btn btn-primary btn-md text-white"> <input
-									type="button" value="Home" onClick="location.href='main'"
-									class="btn btn-primary btn-md text-white">
-
-		
-							</form>
-
+			<br> <input type="submit" value="수정"
+				class="btn btn-primary btn-md text-white"> <input
+				type="button" value="Home" onClick="location.href='main'"
+				class="btn btn-primary btn-md text-white">
+		</form>
 	</div>
 </div>
+
+<!-- 모달창 -->
+	<div class="modal fade" id="myModal" role="dialog"
+		style="z-index: 100000">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<p>${result}</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>

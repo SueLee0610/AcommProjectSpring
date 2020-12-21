@@ -34,8 +34,9 @@ public class MemberService {
 		return dto;
 	}
 
-	public void memberUpdate(MemberDTO member) {
-		dao.memberUpdate(member);
+	public int memberUpdate(MemberDTO member) {
+		int num = dao.memberUpdate(member);
+		return num;
 	}
   
 	public String myPageCName(int cCode) {

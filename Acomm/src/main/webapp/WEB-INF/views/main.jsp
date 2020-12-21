@@ -62,6 +62,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script>
 	      	var typed = new Typed('.typed-words', {
 	        	strings: ["Acommunity"],

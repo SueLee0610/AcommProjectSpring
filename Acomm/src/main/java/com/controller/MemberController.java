@@ -38,7 +38,7 @@ public class MemberController {
 
 		// 폼에서 넘어온 데이터를 memberDTO에 자동저장
 		service.memberAdd(member);
-		model.addAttribute("success", "회원가입 성공");
+		model.addAttribute("result", "회원가입을 성공하였습니다.");
 		return "main";
 	}
 	
@@ -89,13 +89,13 @@ public class MemberController {
 		redirectA.addFlashAttribute("cName", cName);
 		redirectA.addFlashAttribute("myProduct", myProduct);
 		redirectA.addFlashAttribute("myFreeBoard", myFreeBoard);
-		
 		return "redirect:../myPage";
 	}
 	
 	@RequestMapping(value = "loginCheck/memberUpdate")
-	public String memberUpdate(MemberDTO member) {
-		service.memberUpdate(member);
-		return "redirect:../loginCheck/myPage";
+	public String memberUpdate(MemberDTO member, RedirectAttributes rttr) {
+		int num = service.memberUpdate(member);
+		rttr.addFlashAttribute("result", "회원정보 수정이 완료 되었습니다.");
+		return "redirect:../myPage";
 	}
 }

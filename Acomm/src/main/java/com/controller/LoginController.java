@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
 import com.service.MemberService;
@@ -34,8 +35,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/loginCheck/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, RedirectAttributes rttr) {
 		session.invalidate();
+		rttr.addFlashAttribute("result", "로그아웃이 완료되었습니다.");
 		return "redirect:../";
 	}
 }
