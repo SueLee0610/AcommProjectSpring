@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.FreeBoardDTO;
 import com.dto.MemberDTO;
@@ -78,15 +78,21 @@ public class FreeBoardController {
 	
 	//삭제
 	@RequestMapping(value = "/loginCheck/delete")
-	public String delete(@RequestParam("num") int num) {
+	public String delete(@RequestParam("num") int num, RedirectAttributes rttr) {
 		service.delete(num);
-		return "redirect:../freeBoardList";
+		
+		//모달창 띄우기
+		rttr.addFlashAttribute("result", "No." + num + " 게시글이 삭제되었습니다.");		
+		return "redirect:../freeBoardList";		
 	}
 	
 	//수정페이지에서 수정버튼을 눌렀을경우!
 	@RequestMapping(value = "/loginCheck/update")
-	public String update(FreeBoardDTO fDTO) {
+	public String update(FreeBoardDTO fDTO, RedirectAttributes rttr) {
 		service.update(fDTO);
+		
+		//모달창 띄우기
+		rttr.addFlashAttribute("result", "No." + fDTO.getNum() + " 게시글이 수정되었습니다.");
 		return "redirect:../freeBoardList";
 	}
 	
@@ -106,9 +112,12 @@ public class FreeBoardController {
 	
 	//게시글 등록
 	@RequestMapping(value = "/loginCheck/insert")
-	public String insert(FreeBoardDTO fDTO,Model model) {
+	public String insert(FreeBoardDTO fDTO, Model model, RedirectAttributes rttr) {
 		service.insert(fDTO);
 		model.addAttribute("success", "등록성공");
+		
+		//모달창 띄우기
+		rttr.addFlashAttribute("result", " 게시글이 등록되었습니다.");
 		return "redirect:../freeBoardList";
 	}
 	
