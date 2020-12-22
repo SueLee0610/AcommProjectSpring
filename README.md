@@ -32,4 +32,4 @@ git clone https://github.com/SueLee0610/AcommProjectSpring.git
 &nbsp; &nbsp; 한혜선 @hyeseon-han
 
 ## 💡 Contributing
-&nbsp; Pull requests are welcome! For any changes, please open an issue or a pull request.
+&nbsp; Pull requests are welcome! For any changes, please open an issue or make a pull request.
