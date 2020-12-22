@@ -26,7 +26,7 @@ public class LoginController {
 		session.setAttribute("login", dto);
 		String nextPage = "";
 		if (dto == null) {
-			model.addAttribute("mesg", "아이디 또는 비번이 잘못되었습니다.");
+			model.addAttribute("result", "아이디 또는 비밀번호가 잘못되었습니다.");
 			nextPage = "loginForm";
 		} else {
 			nextPage = "main";
