@@ -22,6 +22,7 @@ $( () => {
 							str += '</tr>';
 						$("#courseTable > tbody").append(str);
 					};
+				console.log('courseBoard 다녀감');
 			},
 			error : function(xhr, status, responseData) {
 				console.log("error");
