@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -44,26 +44,26 @@
 	        </div>
 	      </div>
 	    </div>
-	<!-- 모달창 -->
-	<div class="modal fade" id="myModal" role="dialog"
-		style="z-index: 100000">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<h4 class="modal-title"></h4>
-				</div>
-				<div class="modal-body">
-					<p>message</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+		<!-- 모달창 -->
+		<div class="modal fade" id="myModal" role="dialog"
+			style="z-index: 100000">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body">
+						<p>message</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<script>
+		<script>
 	      	var typed = new Typed('.typed-words', {
 	        	strings: ["Acommunity"],
 	        	typeSpeed: 80,
@@ -73,84 +73,50 @@
 	        	loop: true,
 	        	showCursor: true
 	      	});
-	  	</script>
+		</script>
 
-		<section class="site-section bg-light" id="contact-section">
-			<div class="container">
-        		<div class="row mb-5">
-          			<div class="col-12 text-center">
-            			<h2 class="text-black h1 site-section-heading">Contact Us</h2>
-          			</div>
-        </div>
-        <div class="row">
-          <div class="col-md-7 mb-5">
-          
-            <form action="#" class="p-5 bg-white">
-              
-              <h2 class="h4 text-black mb-5">Contact Form</h2> 
-
-              <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label class="text-black" for="lname">Last Name</label>
-                  <input type="text" id="lname" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="subject">Subject</label> 
-                  <input type="subject" id="subject" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
-                </div>
-              </div>
-
-            </form>
-          </div>
-          <div class="col-md-5">
-            
-            <div class="p-4 mb-3 bg-white">
-              <p class="mb-0 font-weight-bold">Address</p>
-              <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
-
-              <p class="mb-0 font-weight-bold">Phone</p>
-              <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
-
-              <p class="mb-0 font-weight-bold">Email Address</p>
-              <p class="mb-0"><a href="#">youremail@domain.com</a></p>
-
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </section>
+		<section class="site-section" id="blog-section">
+		  <div class="container">
+		    <div class="row justify-content-center mb-5">
+		      <div class="col-md-8 text-center">
+		        <h3>IT직무 교육과정</h3>
+		      </div>
+		    </div>
+		
+		    <div class="row">
+		      <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+		        <div class="h-entry">
+		          <a href="#"><img src="img/course6.png" alt="Image" class="img-fluid"></a>
+		          <h2 class="font-size-regular"><a href="single.html">OpenSource 기반 빅데이터 분석...</a></h2>
+		          <div class="meta mb-4">강사 : 박선화 <span class="mx-2">&bullet;</span> 강의 일수 : 120일<span class="mx-2">&bullet;</span> 비용 : 5700000원</div>
+		          <p>머신러닝(Machine Learning)을 활용한 데이터 분석 과정</p>
+		          <p><a href="#">more...</a></p>
+		        </div> 
+		      </div>
+		      <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+		        <div class="h-entry">
+		          <a href="#"><img src="img/course2.jpg" alt="Image" class="img-fluid"></a>
+		          <h2 class="font-size-regular"><a href="single.html">머신러닝을 활용한 데이터 분석 과정</a></h2>
+		          <div class="meta mb-4">강사 : 한성은 <span class="mx-2">&bullet;</span> 강의 일수 : 120일<span class="mx-2">&bullet;</span> 비용 : 5000000원</div>
+		          <p>머신러닝 알고리즘 기술을 활용하여 정형/비정형 대용량 데이터를 구축, 탐색, 분석하고 시각화를 수행이 가능한 분석 전문가 양성을 목표로 합니다.</p>
+		          <p><a href="#">more...</a></p>
+		        </div> 
+		      </div>
+		      <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+		        <div class="h-entry">
+		          <a href="#"><img src="img/course3.png" alt="Image" class="img-fluid"></a>
+		          <h2 class="font-size-regular"><a href="single.html">React기반의 자바(JAVA)개발자 양성..</a></h2>
+		          <div class="meta mb-4">강사 : 이철원 <span class="mx-2">&bullet;</span> 강의 일수 : 90일<span class="mx-2">&bullet;</span> 비용 : 5800000원</div>
+		          <p>자바개발자의 중요 스킬인 스프링 프레임워크 교육과 웹프론트엔드 전반적인 내용을 체계적으로 교육함으로써 응용SW엔지니어 양성을 목표로 합니다.</p>
+		          <p><a href="#">more...</a></p>
+		        </div> 
+		      </div>
+		      
+		    </div>
+		  </div>
+		</section>
     
-	<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
+		<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 	   
 	</body>
 </html>
