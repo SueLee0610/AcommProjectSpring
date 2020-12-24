@@ -97,17 +97,10 @@ public class FreeBoardController {
 	}
 	
 	//로그인 여부 확인 후 게시글 작성 페이지 이동
-	@RequestMapping(value = "/freeBoardWrite")
-	public String freeBoardWrite(HttpSession session, Model model) {
-		MemberDTO mDTO = (MemberDTO)session.getAttribute("login");
-		String nextPage = "";
-		if (mDTO != null) {
-			model.addAttribute("login", mDTO.getUserID());
-			nextPage = "freeBoardWrite";
-		} else {
-			nextPage = "loginForm";
-		}
-		return nextPage;
+	@RequestMapping(value = "/loginCheck/freeBoardWrite")
+	public String freeBoardWrite() {
+
+		return "redirect:../freeBoardWrite";
 	}
 	
 	//게시글 등록
