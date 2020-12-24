@@ -27,7 +27,7 @@
 		   			</select>
 		    		<input type="text" name="searchValue">
 		    		<input type="submit" value="검색">
-		    		<input type="button" value="글쓰기" onClick="location.href='freeBoardWrite'">
+		    		<input type="button" value="글쓰기" onClick="location.href='loginCheck/freeBoardWrite'">
 		 		</form>
 		 	</td>
 		</tr>

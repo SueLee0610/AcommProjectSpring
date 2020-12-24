@@ -21,7 +21,7 @@
 		<div class="row form-group">
 			<div class="col-md-12">
 				<label class="text-black" for="userid">작성자</label>
-				<input type="text" name="userid" id="userid" class="form-control" value="${login}" readonly>
+				<input type="text" name="userid" id="userid" class="form-control" value="${login.userID}" readonly>
 			</div>
 		</div>
 		
