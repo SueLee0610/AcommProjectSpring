@@ -12,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.FreeBoardDTO;
 import com.dto.MemberDTO;
 import com.dto.ProductDTO;
+
 import com.service.FreeBoardService;
 import com.service.MemberService;
 import com.service.ProductService;
@@ -32,7 +34,39 @@ public class MemberController {
 	
 	@Autowired
 	FreeBoardService freeBoardService;
-
+	
+	@RequestMapping(value = "/")
+	public ModelAndView mainIndex() {
+		
+		List<ProductDTO> productList = productService.selectProduct();
+		ModelAndView mav = new ModelAndView();
+		if(productList.size() > 6) {
+			for(int i = 5; i < productList.size(); i++) {
+				productList.remove(productList.get(i));				
+			}
+		}
+		mav.addObject("productList", productList);
+		
+		mav.setViewName("main");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/main")
+	public ModelAndView main() {
+		
+		List<ProductDTO> productList = productService.selectProduct();
+		ModelAndView mav = new ModelAndView();
+		if(productList.size() > 6) {
+			for(int i = 5; i < productList.size(); i++) {
+				productList.remove(productList.get(i));				
+			}
+		}
+		mav.addObject("productList", productList);
+		
+		mav.setViewName("main");
+		return mav;
+	}
+	
 	@RequestMapping(value = "/memberAdd")
 	public String memberAdd(MemberDTO member, Model model) { 
 
