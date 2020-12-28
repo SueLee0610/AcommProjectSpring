@@ -32,9 +32,9 @@
 		 	</td>
 		</tr>
 		<tr>
-			<th width="10%">No</th>
-			<th width="20%">제목</th>
-			<th width="40%">내용</th>
+			<th width="5%">No</th>
+			<th width="30%">제목</th>
+			<th width="35%">내용</th>
 			<th width="10%" style="text-align:center;">작성자</th>
 			<th width="10%" style="text-align:center;">작성일</th>
 			<th width="10%" style="text-align:center;">조회수</th>

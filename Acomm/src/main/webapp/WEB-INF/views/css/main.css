@@ -1817,3 +1817,39 @@ h1, h2, h3, h4, h5,
 .modal-footer > .btn {
     border-radius: 5px;
 }
+
+.content > h3 {
+	font-size:18px !important;
+	padding-left: 7px;
+	font-weight: bold;
+}
+
+.content > h4 {
+	font-size:14px !important;
+	margin-bottom: 0px !important;
+}
+
+.content > h4 > a{
+	text-decoration: none;
+	color: #666666;
+	padding-left: 7px;
+}
+
+.content > h4:hover{
+	background-color: #efefef;
+}
+
+.content > hr {
+	border-top: 1px solid #cccccc !important;
+	margin-bottom: 2px !important;
+}
+
+.content > p {
+	margin-top: 10px !important;
+}
+
+.font-size-regular {
+	border-bottom: 1px dashed #d7d7d7;
+	padding: 15px 0 15px 0;
+}
+

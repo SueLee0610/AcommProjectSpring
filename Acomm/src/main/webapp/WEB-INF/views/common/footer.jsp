@@ -10,7 +10,7 @@
 				<div class="row">
           			<div class="col-md-5">
             			<h2 class="footer-heading mb-4">About Us</h2>
-            			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+            			<p>에이커뮤니티는 국비지원 수강생들을 위한 정보공유<br>커뮤니티 입니다.</p>
           			</div>
           			<div class="col-md-3 ml-auto">
             			<h2 class="footer-heading mb-4">Features</h2>

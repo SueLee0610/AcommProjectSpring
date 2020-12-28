@@ -19,12 +19,13 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	
+  <mvc:view-controller path="/" view-name="main"/> <!-- /요청인 경우 뷰페이지는 main.jsp -->
 	<mvc:view-controller path="/main" view-name="main"/>
 	<mvc:view-controller path="/memberForm" view-name="memberForm"/>
 	<mvc:view-controller path="/loginForm" view-name="loginForm"/>
 	<mvc:view-controller path="/myPage" view-name="myPage"/>
   
-  	<!-- 강의게시판 -->
+  <!-- 강의게시판 -->
 	<mvc:view-controller path="/courseBoard" view-name="courseBoard"/>
 	<mvc:view-controller path="/courseRetrieve" view-name="courseRetrieve"/>
 	<mvc:view-controller path="/courseOrder" view-name="courseOrder"/>
@@ -34,8 +35,8 @@
 	<mvc:view-controller path="/productAdd" view-name="productAdd"/>
 	<mvc:view-controller path="/productUpdate" view-name="productUpdate"/>
   
-  	<!-- 상품게시판 -->
-  	<mvc:view-controller path="/freeBoardList" view-name="freeBoardList"/>
+  <!-- 상품게시판 -->
+  <mvc:view-controller path="/freeBoardList" view-name="freeBoardList"/>
 	<mvc:view-controller path="/freeBoardWrite" view-name="freeBoardWrite"/>
 	<mvc:view-controller path="/freeBoardUpdate" view-name="freeBoardUpdate"/>
 	
