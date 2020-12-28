@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,29 +10,45 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
+import com.dto.ProductDTO;
 import com.service.MemberService;
+import com.service.ProductService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	ProductService productService;
 
 	@RequestMapping(value = "/login")
-	public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+	public ModelAndView login(@RequestParam Map<String, String> map, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
 		MemberDTO dto = service.login(map);
 		session.setAttribute("login", dto);
-		String nextPage = "";
-		if (dto == null) {
-			model.addAttribute("result", "아이디 또는 비밀번호가 잘못되었습니다.");
-			nextPage = "loginForm";
-		} else {
-			nextPage = "main";
+		List<ProductDTO> productList = productService.selectProduct();
+		
+		if(productList.size() > 6) {
+			for(int i = 5; i < productList.size(); i++) {
+				productList.remove(productList.get(i));				
+			}
 		}
-		return nextPage;
+		mav.addObject("productList", productList);
+		
+		if (dto == null) {
+			mav.addObject("result", "아이디 또는 비밀번호가 잘못되었습니다.");
+			mav.setViewName("loginForm");
+		} else {
+			mav.setViewName("main");
+		}
+		return mav;
 	}
 	
 	@RequestMapping(value = "/loginCheck/logout")
