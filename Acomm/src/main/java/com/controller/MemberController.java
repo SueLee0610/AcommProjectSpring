@@ -38,14 +38,23 @@ public class MemberController {
 	@RequestMapping(value = "/")
 	public ModelAndView mainIndex() {
 		
-		List<ProductDTO> productList = productService.selectProduct();
 		ModelAndView mav = new ModelAndView();
+
+		List<ProductDTO> productList = productService.selectProduct();
 		if(productList.size() > 6) {
 			for(int i = 5; i < productList.size(); i++) {
 				productList.remove(productList.get(i));				
 			}
 		}
 		mav.addObject("productList", productList);
+		
+		List<FreeBoardDTO> freeBoardList = freeBoardService.selectFreeBoard();
+		if(freeBoardList.size() > 6) {
+			for(int i = 5; i < freeBoardList.size(); i++) {
+				freeBoardList.remove(freeBoardList.get(i));				
+			}
+		}
+		mav.addObject("freeBoardList", freeBoardList);
 		
 		mav.setViewName("main");
 		return mav;
@@ -54,14 +63,23 @@ public class MemberController {
 	@RequestMapping(value = "/main")
 	public ModelAndView main() {
 		
-		List<ProductDTO> productList = productService.selectProduct();
 		ModelAndView mav = new ModelAndView();
+
+		List<ProductDTO> productList = productService.selectProduct();
 		if(productList.size() > 6) {
 			for(int i = 5; i < productList.size(); i++) {
 				productList.remove(productList.get(i));				
 			}
 		}
 		mav.addObject("productList", productList);
+		
+		List<FreeBoardDTO> freeBoardList = freeBoardService.selectFreeBoard();
+		if(freeBoardList.size() > 6) {
+			for(int i = 5; i < freeBoardList.size(); i++) {
+				freeBoardList.remove(freeBoardList.get(i));				
+			}
+		}
+		mav.addObject("freeBoardList", freeBoardList);
 		
 		mav.setViewName("main");
 		return mav;

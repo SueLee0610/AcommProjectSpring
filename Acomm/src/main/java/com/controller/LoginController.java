@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.MemberDTO;
 import com.dto.ProductDTO;
+import com.dto.FreeBoardDTO;
+import com.service.FreeBoardService;
 import com.service.MemberService;
 import com.service.ProductService;
 
@@ -26,21 +28,32 @@ public class LoginController {
 	
 	@Autowired
 	ProductService productService;
-
+	
+	@Autowired
+	FreeBoardService freeBoardService;
+	
 	@RequestMapping(value = "/login")
 	public ModelAndView login(@RequestParam Map<String, String> map, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
 		MemberDTO dto = service.login(map);
 		session.setAttribute("login", dto);
-		List<ProductDTO> productList = productService.selectProduct();
 		
+		List<ProductDTO> productList = productService.selectProduct();
 		if(productList.size() > 6) {
 			for(int i = 5; i < productList.size(); i++) {
 				productList.remove(productList.get(i));				
 			}
 		}
 		mav.addObject("productList", productList);
+		
+		List<FreeBoardDTO> freeBoardList = freeBoardService.selectFreeBoard();
+		if(freeBoardList.size() > 6) {
+			for(int i = 5; i < freeBoardList.size(); i++) {
+				freeBoardList.remove(freeBoardList.get(i));				
+			}
+		}
+		mav.addObject("freeBoardList", freeBoardList);
 		
 		if (dto == null) {
 			mav.addObject("result", "아이디 또는 비밀번호가 잘못되었습니다.");

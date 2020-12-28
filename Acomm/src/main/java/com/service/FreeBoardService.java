@@ -64,6 +64,11 @@ public class FreeBoardService {
 		List<FreeBoardDTO> result = dao.selectMyFreeBoard(userid);
 		return result;
 	}
+
+	public List<FreeBoardDTO> selectFreeBoard() {
+		List<FreeBoardDTO> list = dao.selectFreeBoard();
+		return list;
+	}
 	
 
 }
