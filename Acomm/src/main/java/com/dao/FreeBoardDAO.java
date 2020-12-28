@@ -92,4 +92,9 @@ public class FreeBoardDAO {
 		return result;
 	}
 
+	public List<FreeBoardDTO> selectFreeBoard() {
+		List<FreeBoardDTO> result = template.selectList("FreeBoardMapper.selectFreeBoard");
+		return result;
+	}
+
 }
