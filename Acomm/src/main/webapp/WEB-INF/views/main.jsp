@@ -102,7 +102,7 @@
 		          <div class="meta mb-4">강사 : 한성은 <span class="mx-2">&bullet;</span> 강의 일수 : 120일<span class="mx-2">&bullet;</span> 비용 : 5000000원</div>
 		          <p>머신러닝 알고리즘 기술을 활용하여 정형/비정형 대용량 데이터를 구축, 탐색, 분석하고 시각화를 수행이 가능한 분석 전문가 양성을 목표로 합니다.</p> -->
 		          <c:forEach var="product" items="${productList}" varStatus="status">
-		          	<h2 class="font-size-regular"><a href="productRetrieve?pCode=${product.pCode}">	<c:out value="${fn:substring(product.pContent, 0, 18)}" /><br></a></h2>
+		          	<h2 class="font-size-regular"><a href="productRetrieve?pCode=${product.pCode}">	<c:out value="${fn:substring(product.pName, 0, 18)}" /><br></a></h2>
 		          </c:forEach>
 		          <p><a href="productBoard">more...</a></p>
 		        </div> 
