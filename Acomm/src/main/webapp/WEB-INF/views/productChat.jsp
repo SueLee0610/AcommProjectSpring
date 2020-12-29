@@ -20,7 +20,7 @@
 			<fieldset>
 				<textarea id="messageWindow" rows="20" cols="50"
 					class="form-control" readonly></textarea>
-				<br /> <input id="inputMessage" type="text" /> <input
+				<br /> <input id="inputMessage" type="text" size="60" onKeypress="javascript:if(event.keyCode==13) {send()}"/> <input
 					class="btn btn-dark" type="submit" value="전송" onclick="send()" />
 				<button class="btn btn-danger"
 					onclick="location.href='productBoard'">나가기</button>
