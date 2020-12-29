@@ -37,8 +37,8 @@
 			</if>			
 		</where>
 
-		<!-- 오름차순 정렬 -->
-		order by num asc
+		<!-- 내림차순 정렬 -->
+		order by num desc
 	</select>	
 	
 	<!-- 게시글 모든 리스트 보여주기 -->

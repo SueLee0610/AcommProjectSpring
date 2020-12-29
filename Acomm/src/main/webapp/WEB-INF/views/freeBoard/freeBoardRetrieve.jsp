@@ -78,13 +78,6 @@
 
 		<c:if test="${login.userID eq freeBoardDetail.userid}">
 			<!-- 수정 가능하도록 활성화  -->
-			<script>
-				$(document).ready(function() {
-					//attr을 이용하여 속성값 변경하기
-					$('#title').attr('readonly', false); //readonly을 비활성화 (읽고 쓰기 가능)
-					$('#content').attr('readonly', false);
-	  			});
-			</script>
 			<input type="button" value="수정" class="btn btn-secondary btn-md text-white" onclick="location.href='freeBoardUpdate?num=${freeBoardDetail.num }'">
 			<input type="button" value="삭제" class="btn btn-secondary btn-md text-white" onclick="location.href='loginCheck/delete?num=${freeBoardDetail.num }'">
 		</c:if>
