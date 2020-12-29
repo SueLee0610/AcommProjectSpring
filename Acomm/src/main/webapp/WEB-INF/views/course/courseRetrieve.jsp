@@ -23,10 +23,10 @@
 					<li class="list-group-item">강사 : <span id="cInstructor">${courseDTO.cInstructor}</span></li>
 					<li class="list-group-item">비용 : <span id="cPrice">${courseDTO.cPrice}원</span></li>
 					<li class="list-group-item">평점: <span id="scoreAvg">${scoreAvg}점</span></li>
-					<li class="list-group-item">연령대: <br>20~25:
-						${ageListCount.age21_25} 명<br> 25~20:
-						${ageListCount.age26_30} 명<br> 30~35:
-						${ageListCount.age31_35} 명<br> 35~40:
+					<li class="list-group-item">연령대: <br>21~25:
+						${ageListCount.age21_25} 명<br> 26~30:
+						${ageListCount.age26_30} 명<br> 31~35:
+						${ageListCount.age31_35} 명<br> 36~40:
 						${ageListCount.age36_40} 명<br>
 					</li>
 				</ul>

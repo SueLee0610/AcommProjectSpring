@@ -93,13 +93,13 @@ public class CourseController {
 		int age36_40 = 0;
 
 		for (int age : ageList) {
-			if (age >= 20 && age <= 24) {
+			if (age >= 21 && age <= 25) {
 				age21_25++;
-			} else if (age <= 29) {
+			} else if (age <= 30) {
 				age26_30++;
-			} else if (age <= 34) {
+			} else if (age <= 35) {
 				age31_35++;
-			} else if (age <= 39) {
+			} else if (age <= 40) {
 				age36_40++;
 			}
 		}
