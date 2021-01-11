@@ -25,9 +25,9 @@ git clone https://github.com/SueLee0610/AcommProjectSpring.git
 - DB: Oracle Database, SQL Developer
 
 ## 👥 Team
+&nbsp; &nbsp; 이수민 @SueLee0610 (Leader)\
 &nbsp; &nbsp; 고인균 @ingyun-go\
 &nbsp; &nbsp; 이미현 @xianeml\
-&nbsp; &nbsp; 이수민 @SueLee0610 (Leader)\
 &nbsp; &nbsp; 한혜선 @hyeseon-han
 
 ## 🌄 Screenshots
