@@ -24,12 +24,17 @@ git clone https://github.com/SueLee0610/AcommProjectSpring.git
 - Server: Tomcat 8
 - DB: Oracle Database, SQL Developer
 
-
 ## 👥 Team
 &nbsp; &nbsp; 고인균 @ingyun-go\
 &nbsp; &nbsp; 이미현 @xianeml\
 &nbsp; &nbsp; 이수민 @SueLee0610 (Leader)\
 &nbsp; &nbsp; 한혜선 @hyeseon-han
+
+## 🌄 Screenshots
+![Screenshot](https://user-images.githubusercontent.com/29162954/104170436-68824380-5401-11eb-9589-2fba1b33fe2f.png)
+![Screenshot](https://user-images.githubusercontent.com/29162954/104169707-450ac900-5400-11eb-90af-75ea1d629fe6.png)
+![Screenshot](https://user-images.githubusercontent.com/29162954/104169715-4805b980-5400-11eb-86ba-1a32e42b5f7c.png)
+![Screenshot](https://user-images.githubusercontent.com/29162954/104169722-4b00aa00-5400-11eb-8608-d3c16ef9beec.png)
 
 ## 💡 Contributing
 &nbsp; Pull requests are welcome! For any changes, please open an issue or make a pull request.
